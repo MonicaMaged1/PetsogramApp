@@ -20,7 +20,7 @@
         android:title="@string/title_notifications" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_profile"
         android:icon="@drawable/paw"
-        android:title="@string/title_dashboard" />
+        android:title="@string/title_profile" />
 </menu>
