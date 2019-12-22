@@ -28,10 +28,7 @@
             android:layout_weight="0.2"
             android:layout_marginRight="10dp"/>
     </LinearLayout>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_search_light"/>
+
 
 
 </LinearLayout>

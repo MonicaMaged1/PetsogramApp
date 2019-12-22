@@ -2,17 +2,19 @@ package com.example.group.petsogramapp.ui.profile;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -36,20 +38,37 @@ public class ProfileFragment extends Fragment {
     private Button mButton;
 
     private PopupWindow mPopupWindow;
+    GridView profileGridView;
+    int[] imageId = {
+            R.drawable.a,
+            R.drawable.b,
+            R.drawable.c,
+    };
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        profileViewModel =
-                ViewModelProviders.of(this).get(ProfileViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_profile, container, false);
-//        final TextView textView = root.findViewById(R.id.text_profile);
+
+    public View onCreateView(@NonNull LayoutInflater Inflater, ViewGroup Container, Bundle savedInstanceState) {
+        profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
+        View Root = Inflater.inflate(R.layout.fragment_profile, Container, false);
+
+        profileGridView = (GridView) Root.findViewById(R.id.postGridView);
+        PostImageAdapter adapter = new PostImageAdapter(Root.getContext(),imageId);
+        profileGridView.setAdapter(adapter);
+
         profileViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-//                textView.setText(s);
             }
         });
-        return root;
+
+        profileGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View View, int Position, long Id) {
+                Intent Intent = new Intent(getActivity(), PostDetails.class);
+                Intent.putExtra("image", imageId[Position]);
+                startActivity(Intent);
+            }
+        });
+        return Root;
     }
 
     @Override
@@ -59,6 +78,10 @@ public class ProfileFragment extends Fragment {
         mActivity = getActivity();
         mLinearLayout = (LinearLayout) mActivity.findViewById(R.id.profileLinearLayout);
         mButton = (Button) mActivity.findViewById(R.id.moreInfoButton);
+
+
+
+
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +111,12 @@ public class ProfileFragment extends Fragment {
                     }
                 });
                 mPopupWindow.showAtLocation(mLinearLayout, Gravity.CENTER,0,0);
+
+
+
             }
         });
+
 
 
     }

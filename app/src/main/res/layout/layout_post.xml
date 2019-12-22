@@ -69,7 +69,16 @@
                 app:srcCompat="@drawable/ic_save">
 
             </ImageView>
+            <ImageView
+                android:id="@+id/inboxButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_toEndOf="@+id/commentButton"
+                android:layout_toRightOf="@+id/commentButton"
+                app:srcCompat="@drawable/ic_inbox"
+                android:layout_marginRight="10dp">
 
+            </ImageView>
 
         </RelativeLayout>
         <TextView
