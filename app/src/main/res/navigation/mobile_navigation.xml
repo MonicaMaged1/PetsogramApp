@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigationAdoption">
+
+    <fragment
+        android:id="@+id/navigationAdoption"
+        android:name="com.example.group.petsogramapp.ui.mating.MatingFragment"
+        android:label="@string/adoption"
+        tools:layout="@layout/fragment_adoption" />
+
+    <fragment
+        android:id="@+id/navigationMating"
+        android:name="com.example.group.petsogramapp.ui.adoption.AdoptionFragment"
+        android:label="@string/mating"
+        tools:layout="@layout/fragment_mating" />
+
+    <fragment
+        android:id="@+id/navigationNotifications"
+        android:name="com.example.group.petsogramapp.ui.notifications.NotificationsFragment"
+        android:label="@string/notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigationProfile"
+        android:name="com.example.group.petsogramapp.ui.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_notifications" />
+</navigation>

@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Petsogram App</string>
+    <string name="title_activity_account">Account</string>
+    <string name="adoption">Adoption</string>
+    <string name="mating">Mating</string>
+    <string name="notifications">Notifications</string>
+    <string name="profile">Profile</string>
+    <string-array name="animals_arrays">
+        <item>Cats</item>
+        <item>Dogs</item>
+        <item>Birds</item>
+        <item>Bunny</item>
+        <item>Fish</item>
+        <item>Turtle</item>
+        <item>Hamster</item>
+    </string-array>
 </resources>
