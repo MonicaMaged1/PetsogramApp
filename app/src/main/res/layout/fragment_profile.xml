@@ -100,77 +100,111 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <TextView
-            android:id="@+id/Type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Cat"
-            android:textColor="#000000"
-            android:textSize="16dp"/>
-
-        <TextView
-            android:id="@+id/Species"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Seyami"
-            android:textColor="#000000"
-            android:textSize="16dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <TextView
-            android:id="@+id/Gender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Female"
-            android:textColor="#000000"
-            android:textSize="16dp"/>
-
-        <TextView
-            android:id="@+id/Age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="3 years"
-            android:textColor="#000000"
-            android:textSize="16dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:orientation="vertical">
 
-<!--        <TextView-->
-<!--            android:id="@+id/Interests"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Interests "-->
-<!--            android:textColor="#000000" />-->
+        <TextView
+            android:id="@+id/biography"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="About Me"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp">
+
+        </TextView>
 
         <TextView
-            android:id="@+id/Bio"
+            android:id="@+id/txtBiography"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="I love food"
-            android:textColor="#000000"
-            android:textSize="16dp"/>
+            android:text="About Me\n"
+            android:textSize="18sp">
+        </TextView>
+
+        <Button
+            android:id="@+id/moreInfoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="More Information" />
+
 
     </LinearLayout>
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:weightSum="2">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/Type"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Cat"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="16dp"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/Species"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Seyami"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="16dp"/>-->
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:weightSum="2">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/Gender"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Female"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="16dp"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/Age"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="3 years"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="16dp"/>-->
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:orientation="vertical">-->
+
+<!--&lt;!&ndash;        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/Interests"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:text="Interests "&ndash;&gt;-->
+<!--&lt;!&ndash;            android:textColor="#000000" />&ndash;&gt;-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/Bio"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="I love food"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="16dp"/>-->
+
+<!--    </LinearLayout>-->
 
 
     <RelativeLayout

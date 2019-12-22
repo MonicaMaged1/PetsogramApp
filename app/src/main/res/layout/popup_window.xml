@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pop_up"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E5DFE7"
+    android:orientation="vertical"
+    android:padding="2dp">
+
+    <ImageButton
+        android:id="@+id/ib_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@null"
+        android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <TextView
+        android:id="@+id/pName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="#00D6CDCD"
+        android:padding="18sp"
+        android:text="Name:" />
+
+    <TextView
+        android:id="@+id/pType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="#00D6CDCD"
+        android:padding="18sp"
+        android:text="Type:" />
+
+    <TextView
+        android:id="@+id/pSpecies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="#00D6CDCD"
+        android:padding="18sp"
+        android:text="Species:" />
+
+    <TextView
+        android:id="@+id/pGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="#00D6CDCD"
+        android:padding="18sp"
+        android:text="Gender:" />
+
+    <TextView
+        android:id="@+id/pMedications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="#00D6CDCD"
+        android:padding="18sp"
+        android:text="Medications:" />
+
+    <TextView
+        android:id="@+id/pAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="#00D6CDCD"
+        android:padding="18sp"
+        android:text="Age:" />
+    <TextView
+        android:id="@+id/pInterests"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#00D6CDCD"
+        android:padding="18sp"
+        android:text="Interests:" />
+    <TextView
+        android:id="@+id/pFamily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#00D6CDCD"
+        android:padding="18sp"
+        android:text="Family:" />
+    <TextView
+        android:id="@+id/pOthers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#00D6CDCD"
+        android:padding="18sp"
+        android:text="Others: " />
+
+</LinearLayout>
