@@ -74,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Specie:"
+                android:text="Species:"
                 android:textColor="#000000"
                 android:textSize="20sp" />
 
@@ -156,12 +156,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Intersets"
+                android:text="Interest"
                 android:textColor="#000000"
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/IntersetsEditText"
+                android:id="@+id/interestEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

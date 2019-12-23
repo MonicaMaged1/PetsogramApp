@@ -7,40 +7,54 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static android.media.MediaRecorder.VideoSource.CAMERA;
-
 
 public class AddNewPetActivity extends AppCompatActivity {
-    private static final int GALLERY =1 ;
-    private static final int CAMERA =2 ;
+    private static final int GALLERY =1;
+    private static final int CAMERA =2;
+    Bitmap bitmap;
 
     private static final Object IMAGE_DIRECTORY ="/uploadedPics";
     DatePickerDialog picker;
     ImageView newPetProfilePictureImageView;
+    Spinner typeSpinner;
+    EditText birthDayEditText;
+    Button uploadPictreButton;
+    EditText nameEditText;
+    EditText speciesEditView;
+    EditText birthDayEditText1;
+    EditText bioEditText;
+    EditText intersetsEditText;
+    CheckBox maleCheckBox;
+    CheckBox femaleCheckBox;
+    boolean isMaleChecked;
+    boolean isFemaleChecked;
+    String Name;
+    String Bio;
+    String Interest;
+    String birthDay;
+    String Species;
+    String Type;
+
+
 
     private void showPictureDialog(){
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
@@ -107,10 +121,22 @@ public class AddNewPetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_pet);
-        final Spinner typeSpinner = (Spinner) findViewById(R.id.typeSpinner);
-        final EditText birthDayEditText = findViewById(R.id.birthDayEditText1);
-        final Button uploadPictreButton = findViewById(R.id.UploadPictreButton);
+        typeSpinner = (Spinner) findViewById(R.id.typeSpinner);
+        birthDayEditText = findViewById(R.id.birthDayEditText1);
+        uploadPictreButton = findViewById(R.id.UploadPictreButton);
         newPetProfilePictureImageView = findViewById(R.id.NewPetProfilePictureImageView);
+        nameEditText=findViewById(R.id.nameEditText);
+        speciesEditView=findViewById(R.id.speciesEditView);
+        birthDayEditText1=findViewById(R.id.birthDayEditText1);
+        bioEditText=findViewById(R.id.BioEditText);
+        intersetsEditText=findViewById(R.id.interestEditText);
+        maleCheckBox=findViewById(R.id.MaleCheckBox);
+        femaleCheckBox=findViewById(R.id.FemaleCheckBox);
+        isFemaleChecked=false;
+        isMaleChecked=false;
+
+
+
         String selectedAnimalType = typeSpinner.getSelectedItem().toString();
         List<String> categories = new ArrayList<String>();
         if(selectedAnimalType=="Cats") {
@@ -133,6 +159,31 @@ public class AddNewPetActivity extends AppCompatActivity {
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(R.layout.activity_add_new_pet);
         // attaching data adapter to spinner
+        nameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                // When focus is lost check that the text field has valid values.
+
+                if (!hasFocus) {
+                    // Validate youredittext
+                    Name=nameEditText.getText().toString();
+                }
+            }
+            });
+        speciesEditView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                // When focus is lost check that the text field has valid values.
+
+                if (!hasFocus) {
+                    // Validate youredittext
+                    Species=speciesEditView.getText().toString();
+                }
+            }
+        });
+
 
         birthDayEditText.setInputType(InputType.TYPE_NULL);
         birthDayEditText.setOnClickListener(new View.OnClickListener() {
@@ -143,14 +194,59 @@ public class AddNewPetActivity extends AppCompatActivity {
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
-                picker = new DatePickerDialog(AddNewPetActivity.this,
-                        new DatePickerDialog.OnDateSetListener() {
+                picker = new DatePickerDialog(AddNewPetActivity.this, new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 birthDayEditText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
+
                 picker.show();
+                birthDay=birthDayEditText.getText().toString();
+            }
+        });
+        intersetsEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                // When focus is lost check that the text field has valid values.
+
+                if (!hasFocus) {
+                    // Validate youredittext
+                    Interest=intersetsEditText.getText().toString();
+                }
+            }
+        });
+        bioEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                // When focus is lost check that the text field has valid values.
+
+                if (!hasFocus) {
+                    // Validate youredittext
+                    Bio=bioEditText.getText().toString();
+                }
+            }
+        });
+
+        maleCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isMaleChecked=true;
+               femaleCheckBox.setChecked(false);
+               isFemaleChecked=false;
+
+            }
+        });
+
+        femaleCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isFemaleChecked=true;
+                maleCheckBox.setChecked(false);
+                isMaleChecked=false;
+
             }
         });
 
@@ -158,8 +254,11 @@ public class AddNewPetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showPictureDialog();
+               
             }
         });
+
+
 
 
 
@@ -175,7 +274,7 @@ public class AddNewPetActivity extends AppCompatActivity {
             if (data != null) {
                 Uri contentURI = data.getData();
                 try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
+                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
                     //String path = saveImage(bitmap);
                     newPetProfilePictureImageView.setImageBitmap(bitmap);
                     Toast.makeText(AddNewPetActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
@@ -188,8 +287,8 @@ public class AddNewPetActivity extends AppCompatActivity {
             }
 
         } else if (requestCode == CAMERA) {
-            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-            newPetProfilePictureImageView.setImageBitmap(thumbnail);
+             bitmap = (Bitmap) data.getExtras().get("data");
+            newPetProfilePictureImageView.setImageBitmap(bitmap);
             //saveImage(thumbnail);
             Toast.makeText(AddNewPetActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
         }
