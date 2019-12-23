@@ -28,6 +28,7 @@ import com.example.group.petsogramapp.R;
 import com.example.group.petsogramapp.ui.home.HomeFragment;
 import com.example.group.petsogramapp.ui.profile.ProfileFragment;
 import com.example.group.petsogramapp.ui.profile.ProfileViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -82,7 +83,14 @@ public class AddFragment extends Fragment {
                     startActivityForResult(pickPhoto , 1);
 
                 } else if (options[item].equals("Cancel")) {
-                    dialog.dismiss();
+                    HomeFragment newHomeFragment = new HomeFragment();
+                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.nav_host_fragment, newHomeFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+
+                    BottomNavigationView navigation = (BottomNavigationView) getActivity().findViewById(R.id.nav_view);
+                    navigation.setSelectedItemId(R.id.navigation_home);
                 }
             }
         });
@@ -118,12 +126,7 @@ public class AddFragment extends Fragment {
                         }
                     }
                     break;
-//                case 2:
-//                    HomeFragment newGamefragment = new HomeFragment();
-//                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                    fragmentTransaction.replace(R.id.navigation_add, newGamefragment);
-//                    fragmentTransaction.addToBackStack(null);
-//                    fragmentTransaction.commit();
+
             }
 
         }
