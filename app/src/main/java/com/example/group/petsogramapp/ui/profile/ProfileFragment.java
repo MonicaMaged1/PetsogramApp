@@ -35,7 +35,8 @@ public class ProfileFragment extends Fragment {
     private Activity mActivity;
 
     private LinearLayout mLinearLayout;
-    private Button mButton;
+    private Button editProfile;
+    private Button moreInfoButton;
 
     private PopupWindow mPopupWindow;
     GridView profileGridView;
@@ -44,7 +45,6 @@ public class ProfileFragment extends Fragment {
             R.drawable.b,
             R.drawable.c,
     };
-
 
     public View onCreateView(@NonNull LayoutInflater Inflater, ViewGroup Container, Bundle savedInstanceState) {
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
@@ -77,47 +77,65 @@ public class ProfileFragment extends Fragment {
         mContext = getActivity().getApplicationContext();
         mActivity = getActivity();
         mLinearLayout = (LinearLayout) mActivity.findViewById(R.id.profileLinearLayout);
-        mButton = (Button) mActivity.findViewById(R.id.moreInfoButton);
+        moreInfoButton = (Button) mActivity.findViewById(R.id.moreInfoButton);
+        editProfile =(Button) mActivity.findViewById(R.id.editProfile);
 
+//        mButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+//                View customView = inflater.inflate(R.layout.popup_window,null);
+//
+//
+//                mPopupWindow = new PopupWindow(
+//                        customView,
+//                        LayoutParams.WRAP_CONTENT,
+//                        LayoutParams.WRAP_CONTENT
+//                );
+//                // Set an elevation value for popup window
+//                // Call requires API level 21
+//                if(Build.VERSION.SDK_INT>=21){
+//                    mPopupWindow.setElevation(5.0f);
+//                }
+//
+//                // Get a reference for the custom view close button
+//                ImageButton closeButton = (ImageButton) customView.findViewById(R.id.ib_close);
+//
+//                // Set a click listener for the popup window close button
+//                closeButton.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        // Dismiss the popup window
+//                        mPopupWindow.dismiss();
+//                    }
+//                });
+//                mPopupWindow.showAtLocation(mLinearLayout, Gravity.CENTER,0,0);
+//
+//
+//
+//            }
+//        });
 
+        moreInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent Intent = new Intent(getContext(), MoreInformationActivity.class);
+                startActivity(Intent);
 
-
-        mButton.setOnClickListener(new View.OnClickListener() {
+            }
+        });
+        editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View customView = inflater.inflate(R.layout.popup_window,null);
-                mPopupWindow = new PopupWindow(
-                        customView,
-                        LayoutParams.WRAP_CONTENT,
-                        LayoutParams.WRAP_CONTENT
-                );
-                // Set an elevation value for popup window
-                // Call requires API level 21
-                if(Build.VERSION.SDK_INT>=21){
-                    mPopupWindow.setElevation(5.0f);
-                }
 
-                // Get a reference for the custom view close button
-                ImageButton closeButton = (ImageButton) customView.findViewById(R.id.ib_close);
-
-                // Set a click listener for the popup window close button
-                closeButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // Dismiss the popup window
-                        mPopupWindow.dismiss();
-                    }
-                });
-                mPopupWindow.showAtLocation(mLinearLayout, Gravity.CENTER,0,0);
-
+                Intent Intent = new Intent(getActivity(), EditProfileActivity.class);
+                startActivity(Intent);
 
 
             }
         });
-
-
-
     }
 }
