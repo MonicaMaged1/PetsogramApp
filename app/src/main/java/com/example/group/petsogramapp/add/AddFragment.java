@@ -83,11 +83,6 @@ public class AddFragment extends Fragment {
                     startActivityForResult(pickPhoto , 1);
 
                 } else if (options[item].equals("Cancel")) {
-                    HomeFragment newHomeFragment = new HomeFragment();
-                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.nav_host_fragment, newHomeFragment);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
 
                     BottomNavigationView navigation = (BottomNavigationView) getActivity().findViewById(R.id.nav_view);
                     navigation.setSelectedItemId(R.id.navigation_home);
