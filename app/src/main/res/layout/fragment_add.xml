@@ -2,12 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btnNext"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:background="#00000000"
+        android:ellipsize="middle"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/nextButton"
+        android:textColor="#2196F3"
+        android:textSize="18sp"
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/selectedFromGallery"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F3E5F5" />
+        android:layout_gravity="top"
+        android:background="#00000000" />
 
 </LinearLayout>
