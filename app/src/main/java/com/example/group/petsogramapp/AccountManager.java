@@ -6,9 +6,8 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.*;
-
-import javax.xml.transform.Templates;
 
 public class AccountManager
 {
@@ -32,35 +31,29 @@ public class AccountManager
     public static final int INVALID_USER_TOKEN = 15;
     public static final int OPERATION_NOT_ALLOWED = 16;
     public static final int WEAK_PASSWORD = 17;
+    public static final int NETWORK_ERROR = 18;
 
     private static AccountManager Instance;
-    private Context referencingActivity;
     private FirebaseAuth authenticationService;
     private boolean isTaskComplete;
     private int taskStatus;
     private int errorStatus;
 
 
-    private AccountManager(Context context)
+    private AccountManager()
     {
         authenticationService = FirebaseAuth.getInstance();
-        referencingActivity = context;
         isTaskComplete = false;
         taskStatus = NEUTRAL;
         errorStatus = NEUTRAL;
     }
 
-    public static AccountManager getInstance(Context context)
+    public static AccountManager getInstance()
     {
         if(Instance == null)
-            Instance = new AccountManager(context);
+            Instance = new AccountManager();
 
         return Instance;
-    }
-
-    public void setContext(Context context)
-    {
-        referencingActivity = context;
     }
 
     public boolean isTaskComplete()
@@ -258,9 +251,14 @@ public class AccountManager
 
             else
             {
-                String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
-                setErrorStatus(errorCode);
                 taskStatus = ERROR;
+                try{throw task.getException();}
+                catch(FirebaseNetworkException e){errorStatus = NETWORK_ERROR;}
+                catch (Exception e)
+                {
+                    String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
+                    setErrorStatus(errorCode);
+                }
             }
         }
     }

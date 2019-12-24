@@ -1,28 +1,49 @@
 package com.example.group.petsogramapp;
 
-import com.google.firebase.database.*;
+import android.content.Context;
+
+import com.google.firebase.firestore.*;
 
 public class DatabaseManager
 {
+    public static final int ERROR = -1;
+    public static final int NEUTRAL = 0;
+    public static final int SUCCESS = 1;
 
+    private static DatabaseManager Instance;
+    private FirebaseFirestore databaseService;
+    private boolean isTaskComplete;
+    private int taskStatus;
+    private int errorStatus;
 
-//        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-//        database.child("users").child("user 1").setValue("Hello, World!");
-//        String value = (String) database.child("users").child("user 1").ge;
-//        Log.d("firebase", "Value is: " + value);
-//        database.child("users").child("user 1").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                String value = (String) dataSnapshot.getValue();
-//                Log.d("firebase", "Value is: " + value);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                Log.w("firebase", "Failed to read value.", error.toException());
-//            }
-//        });
+    private DatabaseManager()
+    {
+        databaseService = FirebaseFirestore.getInstance();
+        isTaskComplete = false;
+        taskStatus = NEUTRAL;
+        errorStatus = NEUTRAL;
+    }
+
+    public static DatabaseManager getInstance()
+    {
+        if(Instance == null)
+            Instance = new DatabaseManager();
+
+        return Instance;
+    }
+
+    public boolean isTaskComplete()
+    {
+        if(isTaskComplete)
+        {
+            isTaskComplete = false;
+            return true;
+        }
+
+        return false;
+    }
+
+    public int getTaskStatus(){ return taskStatus; }
+
+    public int getErrorStatus(){ return errorStatus; }
 }
