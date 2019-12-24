@@ -11,8 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Gallery"></activity>
-        <activity android:name=".Camera" />
         <activity android:name=".AddNewPetActivity" />
         <activity
             android:name=".AccountActivity"
