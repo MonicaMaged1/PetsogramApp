@@ -23,6 +23,7 @@ import com.example.group.petsogramapp.AccountActivity;
 import com.example.group.petsogramapp.AddNewPetActivity;
 import com.example.group.petsogramapp.R;
 
+import com.example.group.petsogramapp.SettingsActivity;
 import com.example.group.petsogramapp.ui.notifications.NotificationsViewModel;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class ProfileFragment extends Fragment {
 
     private ProfileViewModel profileViewModel;
     Activity context;
+    Button settingsButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
@@ -39,6 +41,8 @@ public class ProfileFragment extends Fragment {
         final Button addNewPetButton = root.findViewById(R.id.addNewPetButton);
         final TextView bioTextView = root.findViewById(R.id.bioTextView);
         final ListView petsListView = root.findViewById(R.id.petsListView);
+        settingsButton = root.findViewById(R.id.settingsButton);
+
         ArrayList<SubjectData> arrayList = new ArrayList<SubjectData>();
         String catsNames[] = {"Ziko", "Roza"};
         int[] imageId  = {R.drawable.cat_1, R.drawable.cat_2};
@@ -55,6 +59,15 @@ public class ProfileFragment extends Fragment {
 
         });
 
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SettingsActivity.class);
+                startActivity(intent);
+
+            }
+
+        });
 
         return root;
     }
