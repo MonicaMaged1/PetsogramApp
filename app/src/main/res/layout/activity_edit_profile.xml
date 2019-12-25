@@ -22,9 +22,13 @@
 
         <ImageView
             android:id="@+id/profilePicture"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/a"></ImageView>
+            android:layout_width="fill_parent"
+            android:layout_height="350dp"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:src="@drawable/a">
+
+        </ImageView>
     </LinearLayout>
     <LinearLayout
         android:layout_weight="1"
@@ -149,6 +153,15 @@
 
 
     </LinearLayout>
+
+        <Button
+            android:id="@+id/saveInforButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingTop="20dp"
+            android:text="Save"></Button>
 
 
 </LinearLayout>

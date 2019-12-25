@@ -33,8 +33,15 @@ public class HomeFragment extends Fragment {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View Root = Inflater.inflate(R.layout.fragment_home, Container, false);
 
-        homeListView = (ListView) Root.findViewById(R.id.homeList);
-        HomeImageAdapter adapter = new HomeImageAdapter(Root.getContext(),imageId);
+        return Root;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        homeListView = (ListView) getActivity().findViewById(R.id.homeList);
+        HomeImageAdapter adapter = new HomeImageAdapter(getContext(),imageId);
         homeListView.setAdapter(adapter);
 
 
@@ -44,8 +51,5 @@ public class HomeFragment extends Fragment {
             public void onChanged(@Nullable String s) {
             }
         });
-
-
-        return Root;
     }
 }
