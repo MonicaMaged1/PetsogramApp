@@ -11,61 +11,53 @@ import com.google.firebase.auth.*;
 
 public class AccountManager
 {
-    public static final int ERROR = -1;
-    public static final int NEUTRAL = 0;
-    public static final int SUCCESS = 1;
+    public static final int ERROR = -3;
+    public static final int NONE = -2;
+    public static final int SUCCESS = -1;
 
-    public static final int INVALID_CUSTOM_TOKEN = 2;
-    public static final int CUSTOM_TOKEN_MISMATCH = 3;
-    public static final int INVALID_CREDENTIAL = 4;
-    public static final int INVALID_EMAIL = 5;
-    public static final int WRONG_PASSWORD = 6;
-    public static final int USER_MISMATCH = 7;
-    public static final int REQUIRES_RECENT_LOGIN = 8;
-    public static final int ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL = 9;
-    public static final int EMAIL_ALREADY_IN_USE = 10;
-    public static final int CREDENTIAL_ALREADY_IN_USE = 11;
-    public static final int USER_DISABLED = 12;
-    public static final int USER_TOKEN_EXPIRED = 13;
-    public static final int USER_NOT_FOUND = 14;
-    public static final int INVALID_USER_TOKEN = 15;
-    public static final int OPERATION_NOT_ALLOWED = 16;
-    public static final int WEAK_PASSWORD = 17;
-    public static final int NETWORK_ERROR = 18;
+    public static final int NETWORK_ERROR = 0;
+    public static final int INVALID_CUSTOM_TOKEN = 1;
+    public static final int CUSTOM_TOKEN_MISMATCH = 2;
+    public static final int INVALID_CREDENTIAL = 3;
+    public static final int INVALID_EMAIL = 4;
+    public static final int WRONG_PASSWORD = 5;
+    public static final int USER_MISMATCH = 6;
+    public static final int REQUIRES_RECENT_LOGIN = 7;
+    public static final int ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL = 8;
+    public static final int EMAIL_ALREADY_IN_USE = 9;
+    public static final int CREDENTIAL_ALREADY_IN_USE = 10;
+    public static final int USER_DISABLED = 11;
+    public static final int USER_TOKEN_EXPIRED = 12;
+    public static final int USER_NOT_FOUND = 13;
+    public static final int INVALID_USER_TOKEN = 14;
+    public static final int OPERATION_NOT_ALLOWED = 15;
+    public static final int WEAK_PASSWORD = 16;
+
 
     private static AccountManager Instance;
+    private Updatable Activity;
     private FirebaseAuth authenticationService;
-    private boolean isTaskComplete;
     private int taskStatus;
     private int errorStatus;
 
 
-    private AccountManager()
+    private AccountManager(Updatable Activity)
     {
         authenticationService = FirebaseAuth.getInstance();
-        isTaskComplete = false;
-        taskStatus = NEUTRAL;
-        errorStatus = NEUTRAL;
+        this.Activity = Activity;
+        taskStatus = NONE;
+        errorStatus = NONE;
     }
 
-    public static AccountManager getInstance()
+    public static AccountManager getInstance(Updatable Activity)
     {
         if(Instance == null)
-            Instance = new AccountManager();
+            Instance = new AccountManager(Activity);
 
         return Instance;
     }
 
-    public boolean isTaskComplete()
-    {
-        if(isTaskComplete)
-        {
-            isTaskComplete = false;
-            return true;
-        }
-
-        return false;
-    }
+    public void setActivity(Updatable Activity){this.Activity = Activity;}
 
     public int getTaskStatus(){ return taskStatus; }
 
@@ -242,11 +234,11 @@ public class AccountManager
         @Override
         public void onComplete(@NonNull Task task)
         {
-            isTaskComplete = true;
             if(task.isSuccessful())
             {
                 taskStatus = SUCCESS;
-                errorStatus = NEUTRAL;
+                errorStatus = NONE;
+                Activity.updateUI();
             }
 
             else
