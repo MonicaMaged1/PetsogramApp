@@ -61,6 +61,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 private boolean loginVerified()
 {
-    if()
+    return false;
 }
 }
