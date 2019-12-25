@@ -35,12 +35,21 @@ public class LoginActivity extends AppCompatActivity {
         signupButton=(Button) findViewById(R.id.signupButton);
         loginButton=(Button) findViewById(R.id.loginButton);
 
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_1 = new Intent(getApplicationContext(), Main2Activity.class);
-                startActivity(intent_1);
-            }
+                if (loginVerified())
+                {
+                    Intent intent_1 = new Intent(getApplicationContext(), Main2Activity.class);
+                    startActivity(intent_1);
+                }
+                else
+                {
+                    emailEntry.getText().clear();
+                    passwordEntry.getText().clear();
+                }
+                }
         });
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,4 +59,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+private boolean loginVerified()
+{
+    if()
+}
 }

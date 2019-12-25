@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.*;
 
-public class SignUp extends AppCompatActivity {
+public class SignUp extends AppCompatActivity implements updateable {
     ImageView LogoView;
     TextView welcomeText, nameSignUp, emailSignUp, mobileSignUp, addressSignUp, passwordSignUp, confirmPasswordSignUp;
     EditText nameEntrySignUp, emailEntrySignUp, phoneEntrySignUp, passwordEntrySignUp, confirmPasswordEntrySignUp;
