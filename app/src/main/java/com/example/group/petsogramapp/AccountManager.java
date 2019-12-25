@@ -48,7 +48,7 @@ public class AccountManager
         errorStatus = NEUTRAL;
     }
 
-    public static AccountManager getInstance()
+    public static AccountManager getInstance(updateable u)
     {
         if(Instance == null)
             Instance = new AccountManager();

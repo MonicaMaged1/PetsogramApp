@@ -47,11 +47,19 @@
             app:fontFamily="serif" />
 
         <TextView
+            android:id="@+id/possibleErrorText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <TextView
             android:id="@+id/emailLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="40dp"
             android:layout_weight="0.07"
             android:text="Email "
             android:textSize="18sp" />

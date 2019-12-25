@@ -14,12 +14,16 @@ import android.widget.Toast;
 import java.math.RoundingMode;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements updateable {
     ImageView LogoView;
-    TextView welcomeText, emailLabel, passwordLabel;
+    TextView welcomeText, emailLabel, passwordLabel,possibleErrorText;
     EditText emailEntry, passwordEntry;
     Button signupButton, loginButton;
-
+    boolean updatingLogIn=false;
+    boolean updatingSignUp=false;
+    String emailRetrieved;
+    String passwordRetrieved;
+    int currentErrorStatus;
 
 
     @Override
@@ -34,33 +38,79 @@ public class LoginActivity extends AppCompatActivity {
         passwordEntry=(EditText) findViewById(R.id.passwordEntry);
         signupButton=(Button) findViewById(R.id.signupButton);
         loginButton=(Button) findViewById(R.id.loginButton);
+        possibleErrorText=(TextView)findViewById(R.id.possibleErrorText);
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (loginVerified())
-                {
-                    Intent intent_1 = new Intent(getApplicationContext(), Main2Activity.class);
-                    startActivity(intent_1);
-                }
-                else
-                {
-                    emailEntry.getText().clear();
-                    passwordEntry.getText().clear();
-                }
+                updatingLogIn=true;
+                emailEntry.setFocusable(false);
+                passwordEntry.setFocusable(false);
+                AccountManager.getInstance(this);
+//                    Intent intent_1 = new Intent(getApplicationContext(), Main2Activity.class);
+//                    startActivity(intent_1);
                 }
         });
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_2 = new Intent(getApplicationContext(), SignUp.class);
-                startActivity(intent_2);
+                updatingSignUp=true;
+//                Intent intent_2 = new Intent(getApplicationContext(), SignUp.class);
+//                startActivity(intent_2);
             }
         });
     }
-private boolean loginVerified()
-{
-    if()
-}
+
+
+    @Override
+    public void updateUI() {
+        if(updatingLogIn)
+        {
+            emailRetrieved= emailEntry.getText().toString();
+            passwordRetrieved= passwordEntry.getText().toString();
+            AccountManager.getInstance().signIn(emailRetrieved,passwordRetrieved);
+            currentErrorStatus=AccountManager.getInstance().getErrorStatus();
+
+            switch(currentErrorStatus)
+            {
+                case(AccountManager.INVALID_EMAIL):
+                    emailEntry.getText().clear();
+                    emailEntry.setFocusable(true);
+                    //passwordEntry.setFocusable(true);
+                    possibleErrorText.setText("Invalid Email Format , please re-enter your email");
+                    break;
+                case(AccountManager.WRONG_PASSWORD):
+                    passwordEntry.getText().clear();
+                    //emailEntry.setFocusable(true);
+                    passwordEntry.setFocusable(true);
+                    possibleErrorText.setText("wrong password , please re-enter your password");
+                    break;
+                case(AccountManager.USER_DISABLED):
+                    emailEntry.getText().clear();
+                    passwordEntry.getText().clear();
+                    possibleErrorText.setText("This user has been disabled , try logging in with another user or create a new account");
+                    emailEntry.setFocusable(true);
+                    passwordEntry.setFocusable(true);
+                    break;
+                case(AccountManager.USER_NOT_FOUND):
+                    emailEntry.getText().clear();
+                    passwordEntry.getText().clear();
+                    possibleErrorText.setText("User not found , try logging in with another user or create a new account");
+                    emailEntry.setFocusable(true);
+                    passwordEntry.setFocusable(true);
+                    break;
+                default:
+                    Intent intent_1 = new Intent(getApplicationContext(), Main2Activity.class);
+                    startActivity(intent_1);
+
+            }
+
+        }
+        else if(updatingSignUp)
+        {
+            Intent intent_2 = new Intent(getApplicationContext(), SignUp.class);
+            startActivity(intent_2);
+        }
+    }
 }
