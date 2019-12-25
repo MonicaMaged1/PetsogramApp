@@ -14,7 +14,7 @@ public class PostDetails extends AppCompatActivity {
     ImageView selectedImage;
     ImageView likeButton;
     TextView Likes;
-    TextView  Comments;
+    TextView Comments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

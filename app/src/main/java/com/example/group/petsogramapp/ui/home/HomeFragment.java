@@ -44,8 +44,6 @@ public class HomeFragment extends Fragment {
         HomeImageAdapter adapter = new HomeImageAdapter(getContext(),imageId);
         homeListView.setAdapter(adapter);
 
-
-
         homeViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
