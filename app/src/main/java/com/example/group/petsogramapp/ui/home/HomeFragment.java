@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
@@ -13,14 +14,27 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.group.petsogramapp.R;
+import com.example.group.petsogramapp.ui.profile.Post;
 import com.example.group.petsogramapp.ui.profile.PostDetails;
 import com.example.group.petsogramapp.ui.profile.PostImageAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+
+    private RecyclerView recyclerView;
+    private PostImageAdapter postImageAdapter;
+    private List<Post> postLists;
+
+    private List<String> followingList;
+
     ListView homeListView= null;
 
     int[] imageId = {
@@ -32,7 +46,15 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater Inflater, ViewGroup Container, Bundle savedInstanceState) {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View Root = Inflater.inflate(R.layout.fragment_home, Container, false);
-
+//        recyclerView = Root.findViewById(R.id.homeRecyclerView);
+//        recyclerView.setHasFixedSize(true);
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+//        linearLayoutManager.setReverseLayout(true);
+//        linearLayoutManager.setStackFromEnd(true);
+//        recyclerView.setLayoutManager(linearLayoutManager);
+//        postLists = new ArrayList<>();
+//        postImageAdapter = new PostImageAdapter(getContext(),postLists);
+//        recyclerView.setAdapter(postImageAdapter);
         return Root;
     }
 
