@@ -11,7 +11,7 @@ public class ViewCommentsActivity extends AppCompatActivity {
     ListView viewCommentsListView;
 
 
-    //video 9
+    //video 9 and 10
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
