@@ -11,12 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.group.petsogramapp.R;
 
 import java.util.List;
 
 //public class PostImageAdapter extends RecyclerView.Adapter<PostImageAdapter.ViewHolder>{
-//
+//   a5leeh recyclerview then continue video 7
 //    public Context mContext;
 //    public List<Post> mPost;
 //
@@ -33,7 +34,8 @@ import java.util.List;
 //
 //    @Override
 //    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//
+//        Post post =mPost.get(position);
+//        Glide.with(mContext).load(post.getPostImage()).into(holder.postImage);
 //    }
 //
 //    @Override

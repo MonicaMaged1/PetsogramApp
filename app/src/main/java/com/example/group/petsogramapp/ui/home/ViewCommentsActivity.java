@@ -9,6 +9,10 @@ import com.example.group.petsogramapp.R;
 
 public class ViewCommentsActivity extends AppCompatActivity {
     ListView viewCommentsListView;
+
+
+    //video 9
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
