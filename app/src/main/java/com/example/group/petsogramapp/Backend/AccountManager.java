@@ -1,6 +1,4 @@
-package com.example.group.petsogramapp;
-
-import android.content.Context;
+package com.example.group.petsogramapp.Backend;
 
 import androidx.annotation.NonNull;
 
@@ -41,18 +39,17 @@ public class AccountManager
     private int errorStatus;
 
 
-    private AccountManager(Updatable Activity)
+    private AccountManager()
     {
         authenticationService = FirebaseAuth.getInstance();
-        this.Activity = Activity;
         taskStatus = NONE;
         errorStatus = NONE;
     }
 
-    public static AccountManager getInstance(Updatable Activity)
+    public static AccountManager getInstance()
     {
         if(Instance == null)
-            Instance = new AccountManager(Activity);
+            Instance = new AccountManager();
 
         return Instance;
     }
@@ -63,10 +60,22 @@ public class AccountManager
 
     public int getErrorStatus(){ return errorStatus; }
 
+    public void handleError(Task task)
+    {
+        taskStatus = ERROR;
+        try{throw task.getException();}
+        catch(FirebaseNetworkException e){errorStatus = NETWORK_ERROR;}
+        catch (Exception e)
+        {
+            String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
+            setErrorStatus(errorCode);
+        }
+    }
+
     public void signUp(String emailAddress, String Password)
     {
         Task<AuthResult> signUpTask = authenticationService.createUserWithEmailAndPassword(emailAddress, Password);
-        signUpTask.addOnCompleteListener(new onTaskCompleteListener());
+        signUpTask.addOnCompleteListener(new onTaskComplete());
     }
 
     public void verifyEmail()
@@ -75,14 +84,14 @@ public class AccountManager
         if(currentUser != null)
         {
             Task<Void> emailVerificationTask = currentUser.sendEmailVerification();
-            emailVerificationTask.addOnCompleteListener(new onTaskCompleteListener());
+            emailVerificationTask.addOnCompleteListener(new onTaskComplete());
         }
     }
 
     public void signIn(String emailAddress, String Password)
     {
         Task<AuthResult> signInTask = authenticationService.signInWithEmailAndPassword(emailAddress, Password);
-        signInTask.addOnCompleteListener(new onTaskCompleteListener());
+        signInTask.addOnCompleteListener(new onTaskComplete());
     }
 
     public void signOut()
@@ -95,7 +104,7 @@ public class AccountManager
     public void resetPassword(String emailAddress)
     {
         Task<Void> passwordResetTask = authenticationService.sendPasswordResetEmail(emailAddress);
-        passwordResetTask.addOnCompleteListener(new onTaskCompleteListener());
+        passwordResetTask.addOnCompleteListener(new onTaskComplete());
     }
 
     public void changePassword(String newPassword)
@@ -104,7 +113,7 @@ public class AccountManager
         if(currentUser != null)
         {
             Task<Void> passwordChangeTask = currentUser.updatePassword(newPassword);
-            passwordChangeTask.addOnCompleteListener(new onTaskCompleteListener());
+            passwordChangeTask.addOnCompleteListener(new onTaskComplete());
         }
     }
 
@@ -114,7 +123,7 @@ public class AccountManager
         if(currentUser != null)
         {
             Task<Void> emailChangeTask = currentUser.updateEmail(newEmail);
-            emailChangeTask.addOnCompleteListener(new onTaskCompleteListener());
+            emailChangeTask.addOnCompleteListener(new onTaskComplete());
         }
     }
 
@@ -125,7 +134,7 @@ public class AccountManager
         {
             AuthCredential userCredentials = EmailAuthProvider.getCredential(emailAddress, Password);
             Task<Void> reauthenticationTask = currentUser.reauthenticate(userCredentials);
-            reauthenticationTask.addOnCompleteListener(new onTaskCompleteListener());
+            reauthenticationTask.addOnCompleteListener(new onTaskComplete());
         }
     }
 
@@ -229,7 +238,7 @@ public class AccountManager
         }
     }
 
-    private class onTaskCompleteListener implements OnCompleteListener
+    private class onTaskComplete implements OnCompleteListener
     {
         @Override
         public void onComplete(@NonNull Task task)
@@ -242,16 +251,7 @@ public class AccountManager
             }
 
             else
-            {
-                taskStatus = ERROR;
-                try{throw task.getException();}
-                catch(FirebaseNetworkException e){errorStatus = NETWORK_ERROR;}
-                catch (Exception e)
-                {
-                    String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
-                    setErrorStatus(errorCode);
-                }
-            }
+                handleError(task);
         }
     }
 }

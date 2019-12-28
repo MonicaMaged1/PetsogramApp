@@ -1,6 +1,4 @@
-package com.example.group.petsogramapp;
-
-import android.util.Log;
+package com.example.group.petsogramapp.Backend;
 
 public class User extends Document
 {
