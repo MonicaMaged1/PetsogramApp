@@ -13,7 +13,7 @@ public class CompoundQuery extends FirebaseQuery
     public void addQuery(SimpleQuery Query)
     {
         String fieldName = Query.getFieldName();
-        Object valueToQuery = Query.getValueToQuery();
+        Object queryValue = Query.getQueryValue();
 
         if(executingQuery == null)
         {
@@ -24,27 +24,27 @@ public class CompoundQuery extends FirebaseQuery
         switch(Query.getOperator())
         {
             case "=":
-                executingQuery = executingQuery.whereEqualTo(fieldName, valueToQuery);
+                executingQuery = executingQuery.whereEqualTo(fieldName, queryValue);
                 break;
 
             case ">":
-                executingQuery = executingQuery.whereGreaterThan(fieldName, valueToQuery);
+                executingQuery = executingQuery.whereGreaterThan(fieldName, queryValue);
                 break;
 
             case "<":
-                executingQuery = executingQuery.whereLessThan(fieldName, valueToQuery);
+                executingQuery = executingQuery.whereLessThan(fieldName, queryValue);
                 break;
 
             case ">=":
-                executingQuery = executingQuery.whereGreaterThanOrEqualTo(fieldName, valueToQuery);
+                executingQuery = executingQuery.whereGreaterThanOrEqualTo(fieldName, queryValue);
                 break;
 
             case "<=":
-                executingQuery = executingQuery.whereLessThanOrEqualTo(fieldName, valueToQuery);
+                executingQuery = executingQuery.whereLessThanOrEqualTo(fieldName, queryValue);
                 break;
 
             case "!=":
-                executingQuery = executingQuery.whereLessThan(fieldName, valueToQuery).whereGreaterThan(fieldName, valueToQuery);
+                executingQuery = executingQuery.whereLessThan(fieldName, queryValue).whereGreaterThan(fieldName, queryValue);
                 break;
 
             default:

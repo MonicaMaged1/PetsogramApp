@@ -142,6 +142,14 @@ public class DatabaseManager
         findTask.addOnCompleteListener(new onFindTaskComplete(className));
     }
 
+    public void updateDocument(String collectionName, String documentID, String fieldName, String newValue)
+    {
+        CollectionReference collection = databaseService.collection(collectionName);
+        DocumentReference document  = collection.document(documentID);
+        Task<Void> updateTask = document.update(fieldName, newValue);
+        updateTask.addOnCompleteListener(new onUpdateTaskComplete());
+    }
+
     public void executeQuery(FirebaseQuery Query, String className)
     {
         Query executingQuery = Query.build();
@@ -215,6 +223,21 @@ public class DatabaseManager
                         break;
                 }
 
+                Activity.updateUI();
+            }
+
+            else
+                handleError(task);
+        }
+    }
+
+    private class onUpdateTaskComplete implements OnCompleteListener<Void>
+    {
+        @Override
+        public void onComplete(@NonNull Task<Void> task)
+        {
+            if(task.isSuccessful())
+            {
                 Activity.updateUI();
             }
 

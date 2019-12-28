@@ -9,14 +9,14 @@ public class SimpleQuery extends FirebaseQuery
     private String collectionName;
     private String fieldName;
     private String Operator;
-    private Object valueToQuery;
+    private Object queryValue;
 
     public SimpleQuery(String collectionName, String fieldName, String Operator, Object valueToQuery)
     {
         this.collectionName = collectionName;
         this.fieldName = fieldName;
         this.Operator = Operator;
-        this.valueToQuery = valueToQuery;
+        this.queryValue = valueToQuery;
     }
 
     @Override
@@ -29,27 +29,27 @@ public class SimpleQuery extends FirebaseQuery
         switch(Operator)
         {
             case "=":
-                executingQuery = collection.whereEqualTo(fieldName, valueToQuery);
+                executingQuery = collection.whereEqualTo(fieldName, queryValue);
                 break;
 
             case ">":
-                executingQuery = collection.whereGreaterThan(fieldName, valueToQuery);
+                executingQuery = collection.whereGreaterThan(fieldName, queryValue);
                 break;
 
             case "<":
-                executingQuery = collection.whereLessThan(fieldName, valueToQuery);
+                executingQuery = collection.whereLessThan(fieldName, queryValue);
                 break;
 
             case ">=":
-                executingQuery = collection.whereGreaterThanOrEqualTo(fieldName, valueToQuery);
+                executingQuery = collection.whereGreaterThanOrEqualTo(fieldName, queryValue);
                 break;
 
             case "<=":
-                executingQuery = collection.whereLessThanOrEqualTo(fieldName, valueToQuery);
+                executingQuery = collection.whereLessThanOrEqualTo(fieldName, queryValue);
                 break;
 
             case "!=":
-                executingQuery = collection.whereLessThan(fieldName, valueToQuery).whereGreaterThan(fieldName, valueToQuery);
+                executingQuery = collection.whereLessThan(fieldName, queryValue).whereGreaterThan(fieldName, queryValue);
                 break;
 
             default:
@@ -68,5 +68,5 @@ public class SimpleQuery extends FirebaseQuery
 
     public String getOperator() {return Operator;}
 
-    public Object getValueToQuery() {return valueToQuery;}
+    public Object getQueryValue() {return queryValue;}
 }
