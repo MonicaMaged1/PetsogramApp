@@ -1,7 +1,10 @@
 package com.example.group.petsogramapp.Backend;
 
+import android.graphics.Bitmap;
+
 public class User extends Document
 {
+    private Bitmap profilePhoto;
     private String fullName;
     private String emailAddress;
     private String phoneNumber;
@@ -9,8 +12,9 @@ public class User extends Document
 
     public User(){}
 
-    public User(String fullName, String emailAddress, String phoneNumber, String homeAddress)
+    public User(Bitmap profilePhoto, String fullName, String emailAddress, String phoneNumber, String homeAddress)
     {
+        this.profilePhoto = profilePhoto;
         this.fullName = fullName;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
