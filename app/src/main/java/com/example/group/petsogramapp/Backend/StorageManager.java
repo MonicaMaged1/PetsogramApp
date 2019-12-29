@@ -1,9 +1,16 @@
 package com.example.group.petsogramapp.Backend;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseNetworkException;
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.storage.*;
+
+import java.io.ByteArrayOutputStream;
 
 public class StorageManager
 {
@@ -45,11 +52,13 @@ public class StorageManager
     //User canceled the operation.
     public static final int CANCELED = -13040;
 
+    private final long MAX_DOWNLOAD_SIZE = 1024*1024*5;
     private static StorageManager Instance;
     private Updatable Activity;
     private FirebaseStorage storageService;
     private int taskStatus;
     private int errorStatus;
+    Bitmap retrievedPhoto;
 
     private StorageManager()
     {
@@ -74,6 +83,8 @@ public class StorageManager
 
     public int getErrorStatus(){ return errorStatus; }
 
+    public Bitmap getRetrievedPhoto(){ return retrievedPhoto; }
+
     public void handleError(Task task)
     {
         taskStatus = ERROR;
@@ -82,6 +93,107 @@ public class StorageManager
         catch (Exception e)
         {
             errorStatus = ((StorageException) task.getException()).getErrorCode();
+        }
+    }
+
+    public void uploadPhoto(Bitmap Photo, String collectionName, String documentID, boolean isProfilePhoto, String photoName)
+    {
+        StorageReference Storage = storageService.getReference();
+        String Path = "";
+        if(isProfilePhoto)
+            Path = collectionName+"/"+documentID+"/"+"ProfilePhoto/"+photoName;
+
+        else
+            Path = collectionName+"/"+documentID+"/"+"AllPhotos/"+photoName;
+
+        StorageReference storageLocation = Storage.child(Path);
+        ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
+        Photo.compress(Bitmap.CompressFormat.JPEG, 100, byteOutputStream);
+        byte[] photoData = byteOutputStream.toByteArray();
+        UploadTask uploadTask = storageLocation.putBytes(photoData);
+        uploadTask.addOnCompleteListener(new onUploadTaskComplete());
+    }
+
+    public void retrievePhoto(String collectionName, String documentID, boolean isProfilePhoto, String photoName)
+    {
+        StorageReference Storage = storageService.getReference();
+        String Path = "";
+        if(isProfilePhoto)
+            Path = collectionName+"/"+documentID+"/"+"ProfilePhoto/"+photoName;
+
+        else
+            Path = collectionName+"/"+documentID+"/"+"AllPhotos/"+photoName;
+
+        StorageReference storageLocation = Storage.child(Path);
+        Task<byte[]> retrievalTask = storageLocation.getBytes(MAX_DOWNLOAD_SIZE);
+        retrievalTask.addOnCompleteListener(new onRetrievalTaskComplete());
+    }
+
+    public void deletePhoto(String collectionName, String documentID, boolean isProfilePhoto, String photoName)
+    {
+        StorageReference Storage = storageService.getReference();
+        String Path = "";
+        if(isProfilePhoto)
+            Path = collectionName+"/"+documentID+"/"+"ProfilePhoto/"+photoName;
+
+        else
+            Path = collectionName+"/"+documentID+"/"+"AllPhotos/"+photoName;
+
+        StorageReference storageLocation = Storage.child(Path);
+        Task<Void> deleteTask = storageLocation.delete();
+        deleteTask.addOnCompleteListener(new onDeleteTaskComplete());
+    }
+
+    private class onUploadTaskComplete implements OnCompleteListener<UploadTask.TaskSnapshot>
+    {
+        @Override
+        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task)
+        {
+            if(task.isSuccessful())
+            {
+                taskStatus = SUCCESS;
+                errorStatus = NONE;
+                Activity.updateUI();
+            }
+
+            else
+                handleError(task);
+        }
+    }
+
+    private class onRetrievalTaskComplete implements OnCompleteListener<byte[]>
+    {
+        @Override
+        public void onComplete(@NonNull Task<byte[]> task)
+        {
+            if(task.isSuccessful())
+            {
+                byte[] photoData = task.getResult();
+                retrievedPhoto = BitmapFactory.decodeByteArray(photoData, 0, photoData.length);
+                taskStatus = SUCCESS;
+                errorStatus = NONE;
+                Activity.updateUI();
+            }
+
+            else
+                handleError(task);
+        }
+    }
+
+    private class onDeleteTaskComplete implements OnCompleteListener<Void>
+    {
+        @Override
+        public void onComplete(@NonNull Task<Void> task)
+        {
+            if(task.isSuccessful())
+            {
+                taskStatus = SUCCESS;
+                errorStatus = NONE;
+                Activity.updateUI();
+            }
+
+            else
+                handleError(task);
         }
     }
 }
