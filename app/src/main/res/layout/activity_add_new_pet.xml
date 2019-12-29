@@ -34,7 +34,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -83,7 +85,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10" />
+                android:ems="10"
+                android:maxLines="1"
+                android:singleLine="true" />
 
 
         </LinearLayout>
@@ -110,7 +114,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true" />
 
             <Spinner
                 android:id="@+id/ageSpinner"
@@ -173,7 +179,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -198,7 +206,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -229,10 +239,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_notifications_black_24dp" />
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    />
 
                 <Button
-                    android:id="@+id/UploadPictreButton"
+                    android:id="@+id/UploadPictureButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

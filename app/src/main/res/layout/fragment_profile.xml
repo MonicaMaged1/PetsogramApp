@@ -48,9 +48,11 @@
         <ImageView
             android:id="@+id/profilePicture"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@mipmap/ic_launcher" />
+            android:adjustViewBounds="true"
+            android:background="@drawable/emptyprofile"
+            android:scaleType="centerInside" />
 
         <TextView
             android:id="@+id/numberOfPets"
@@ -60,7 +62,8 @@
             android:gravity="center_horizontal"
             android:text="0 \n Posts"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/numberOfFollowers"
@@ -70,7 +73,8 @@
             android:gravity="center_horizontal"
             android:text="0 \n Followers"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/numberOfFollowing"
@@ -80,7 +84,8 @@
             android:gravity="center_horizontal"
             android:text="0 \n Following"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout

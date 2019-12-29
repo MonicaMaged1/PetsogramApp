@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/navigationAdoption"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/adoption"
         android:title="@string/adoption" />
 
     <item
         android:id="@+id/navigationMating"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/mating"
         android:title="@string/mating" />
 
     <item

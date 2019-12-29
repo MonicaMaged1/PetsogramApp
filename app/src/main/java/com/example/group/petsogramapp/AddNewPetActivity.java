@@ -8,35 +8,34 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.group.petsogramapp.Backend.DatabaseManager;
+import com.example.group.petsogramapp.Backend.Updatable;
+import com.example.group.petsogramapp.ui.profile.ProfileFragment;
+
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
-public class AddNewPetActivity extends AppCompatActivity {
+public class AddNewPetActivity extends AppCompatActivity implements Updatable {
+    private DatabaseManager databaseManager;
+
     private static final int GALLERY =1;
     private static final int CAMERA =2;
     Bitmap bitmap;
@@ -47,7 +46,7 @@ public class AddNewPetActivity extends AppCompatActivity {
     Spinner typeSpinner;
     Spinner ageSpinner;
     EditText ageEditText;
-    Button uploadPictreButton;
+    Button uploadPictureButton;
     Button addNewPetButton;
     EditText nameEditText;
     EditText speciesEditView;
@@ -69,8 +68,9 @@ public class AddNewPetActivity extends AppCompatActivity {
     int year=0;
     boolean birthDayIsChosen=false;
     String date;
-
-
+    String userID;
+    String Gender;
+    int Age;
 
     private void showPictureDialog(){
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
@@ -95,8 +95,7 @@ public class AddNewPetActivity extends AppCompatActivity {
         pictureDialog.show();
     }
     public void choosePhotoFromGallary() {
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
         startActivityForResult(galleryIntent, GALLERY);
     }
@@ -138,10 +137,12 @@ public class AddNewPetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_pet);
+        databaseManager = DatabaseManager.getInstance();
+        databaseManager.setActivity(this);
         typeSpinner = (Spinner) findViewById(R.id.typeSpinner);
         ageSpinner = (Spinner) findViewById(R.id.ageSpinner);
         ageEditText = findViewById(R.id.ageEditText);
-        uploadPictreButton = findViewById(R.id.UploadPictreButton);
+        uploadPictureButton = findViewById(R.id.UploadPictureButton);
         addNewPetButton = findViewById(R.id.AddNewPetButton);
         newPetProfilePictureImageView = findViewById(R.id.NewPetProfilePictureImageView);
         nameEditText=findViewById(R.id.nameEditText);
@@ -152,6 +153,11 @@ public class AddNewPetActivity extends AppCompatActivity {
         femaleCheckBox=findViewById(R.id.FemaleCheckBox);
         isFemaleChecked=false;
         isMaleChecked=false;
+        bitmap= BitmapFactory.decodeResource(getResources(), R.drawable.emptyprofile);
+
+
+        Intent intent = getIntent();
+        userID = intent.getStringExtra("ID");
 
 
 
@@ -213,7 +219,6 @@ public class AddNewPetActivity extends AppCompatActivity {
 
                 if (!hasFocus) {
                     // Validate youredittext
-
                     birthDay=ageEditText.getText().toString();
 
                 }
@@ -262,6 +267,7 @@ public class AddNewPetActivity extends AppCompatActivity {
                 isMaleChecked=true;
                femaleCheckBox.setChecked(false);
                isFemaleChecked=false;
+               Gender="Male";
 
             }
         });
@@ -272,11 +278,12 @@ public class AddNewPetActivity extends AppCompatActivity {
                 isFemaleChecked=true;
                 maleCheckBox.setChecked(false);
                 isMaleChecked=false;
+                Gender="Female";
 
             }
         });
 
-        uploadPictreButton.setOnClickListener(new View.OnClickListener() {
+        uploadPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPictureDialog();
@@ -311,6 +318,8 @@ public class AddNewPetActivity extends AppCompatActivity {
                     Toast.makeText(AddNewPetActivity.this, "Please enter the gender of your pet", Toast.LENGTH_SHORT).show();
                 }
 
+//                Pet pet = new Pet(userID,bitmap,Name,Gender,Bio,date,Type,Species);
+//                databaseManager.addDocument("Pets", pet);
 
 
             }
@@ -352,5 +361,22 @@ public class AddNewPetActivity extends AppCompatActivity {
             //saveImage(thumbnail);
             Toast.makeText(AddNewPetActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void updateUIFromDatabase() {
+        Intent intent = new Intent(getApplicationContext(), ProfileFragment.class);
+        startActivity(intent);
+    }
+
+
+    @Override
+    public void updateUIFromAuthentication() {
+
+    }
+
+    @Override
+    public void updateUIFromStorage() {
+
     }
 }

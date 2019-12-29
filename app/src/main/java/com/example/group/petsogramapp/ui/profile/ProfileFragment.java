@@ -21,6 +21,9 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.group.petsogramapp.AccountActivity;
 import com.example.group.petsogramapp.AddNewPetActivity;
+import com.example.group.petsogramapp.Backend.DatabaseManager;
+import com.example.group.petsogramapp.Backend.Pet;
+import com.example.group.petsogramapp.Backend.User;
 import com.example.group.petsogramapp.R;
 
 import com.example.group.petsogramapp.SettingsActivity;
@@ -30,9 +33,12 @@ import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment {
 
+    private DatabaseManager databaseManager;
     private ProfileViewModel profileViewModel;
     Activity context;
     Button settingsButton;
+    User user;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
@@ -42,8 +48,10 @@ public class ProfileFragment extends Fragment {
         final TextView bioTextView = root.findViewById(R.id.bioTextView);
         final ListView petsListView = root.findViewById(R.id.petsListView);
         settingsButton = root.findViewById(R.id.settingsButton);
+        user = new User();
 
         ArrayList<SubjectData> arrayList = new ArrayList<SubjectData>();
+        ArrayList<Pet> myPets = new ArrayList<Pet>();
         String catsNames[] = {"Ziko", "Roza"};
         int[] imageId  = {R.drawable.cat_1, R.drawable.cat_2};
         CustomAdapter adapter = new CustomAdapter(root.getContext(), catsNames, imageId);
@@ -53,6 +61,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddNewPetActivity.class);
+                intent.putExtra("ID",user.getID());
                 startActivity(intent);
 
             }
