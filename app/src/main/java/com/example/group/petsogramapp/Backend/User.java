@@ -1,11 +1,8 @@
 package com.example.group.petsogramapp.Backend;
 
-import android.graphics.Bitmap;
-
 import java.util.ArrayList;
 public class User extends Document
 {
-    private Bitmap profilePhoto;
     private String fullName;
     private String emailAddress;
     private String phoneNumber;
@@ -14,9 +11,8 @@ public class User extends Document
 
     public User(){}
 
-    public User(Bitmap profilePhoto, String fullName, String emailAddress, String phoneNumber, String homeAddress)
+    public User(String fullName, String emailAddress, String phoneNumber, String homeAddress)
     {
-        this.profilePhoto = profilePhoto;
         this.fullName = fullName;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
@@ -24,8 +20,10 @@ public class User extends Document
         this.Pets = new ArrayList<>();
     }
 
+    public void addPhoto(String petID){Pets.add(petID);}
     public String getFullName() {return fullName;}
     public String getEmailAddress() {return emailAddress;}
     public String getPhoneNumber() {return phoneNumber;}
     public String getHomeAddress() {return homeAddress;}
+    public ArrayList<String> getPets(){return Pets;}
 }
