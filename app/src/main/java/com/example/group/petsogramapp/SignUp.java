@@ -14,7 +14,7 @@ import com.example.group.petsogramapp.Backend.Updatable;
 import java.util.*;
 import java.awt.*;
 
-public abstract class SignUp extends AppCompatActivity implements Updatable {
+public class SignUp extends AppCompatActivity implements Updatable {
     ImageView LogoView;
     TextView welcomeText, nameSignUp, emailSignUp, mobileSignUp, addressSignUp, passwordSignUp, confirmPasswordSignUp,errorTxt;
     EditText nameEntrySignUp, emailEntrySignUp, phoneEntrySignUp,addressEntrySignUp, passwordEntrySignUp, confirmPasswordEntrySignUp;

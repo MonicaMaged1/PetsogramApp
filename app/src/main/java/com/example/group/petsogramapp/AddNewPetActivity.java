@@ -1,5 +1,6 @@
 package com.example.group.petsogramapp;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputType;
@@ -22,8 +24,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -53,6 +60,9 @@ public class AddNewPetActivity extends AppCompatActivity {
     String birthDay;
     String Species;
     String Type;
+    int day = 0;
+    int month = 0;
+    int year=0;
 
 
 
@@ -117,17 +127,18 @@ public class AddNewPetActivity extends AppCompatActivity {
 //        return "";
 //    }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_pet);
         typeSpinner = (Spinner) findViewById(R.id.typeSpinner);
-        birthDayEditText = findViewById(R.id.birthDayEditText1);
+        birthDayEditText = findViewById(R.id.birthDayEditText);
         uploadPictreButton = findViewById(R.id.UploadPictreButton);
         newPetProfilePictureImageView = findViewById(R.id.NewPetProfilePictureImageView);
         nameEditText=findViewById(R.id.nameEditText);
         speciesEditView=findViewById(R.id.speciesEditView);
-        birthDayEditText1=findViewById(R.id.birthDayEditText1);
+        birthDayEditText=findViewById(R.id.birthDayEditText);
         bioEditText=findViewById(R.id.BioEditText);
         intersetsEditText=findViewById(R.id.interestEditText);
         maleCheckBox=findViewById(R.id.MaleCheckBox);
@@ -156,8 +167,10 @@ public class AddNewPetActivity extends AppCompatActivity {
             categories.add("Billy");
         }
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.activity_add_new_pet, categories);
+
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(R.layout.activity_add_new_pet);
+
         // attaching data adapter to spinner
         nameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -190,9 +203,9 @@ public class AddNewPetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
-                int day = cldr.get(Calendar.DAY_OF_MONTH);
-                int month = cldr.get(Calendar.MONTH);
-                int year = cldr.get(Calendar.YEAR);
+                 day = cldr.get(Calendar.DAY_OF_MONTH);
+                 month = cldr.get(Calendar.MONTH);
+                 year = cldr.get(Calendar.YEAR);
                 // date picker dialog
                 picker = new DatePickerDialog(AddNewPetActivity.this, new DatePickerDialog.OnDateSetListener() {
                             @Override
@@ -200,11 +213,40 @@ public class AddNewPetActivity extends AppCompatActivity {
                                 birthDayEditText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
-
                 picker.show();
                 birthDay=birthDayEditText.getText().toString();
+                String date=day + "/" + (month + 1) + "/" + year;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Date d = null;
+                try {
+                    d = sdf.parse(birthDay);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                picker.show();
+                birthDay=birthDayEditText.getText().toString();
+                Calendar c = Calendar.getInstance();
+                c.setTime(d);
+                LocalDate l1 = LocalDate.of(year, month, day);
+                LocalDate now1 = LocalDate.now();
+                Period diff1 = Period.between(l1, now1);
+                System.out.println("age:" + diff1.getYears() + "Years"+diff1.getMonths()+"Months"+diff1.getDays()+"Days");
+
             }
         });
+        birthDayEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                // When focus is lost check that the text field has valid values.
+
+                if (!hasFocus) {
+                    // Validate youredittext
+
+                }
+            }
+        });
+
         intersetsEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -217,6 +259,8 @@ public class AddNewPetActivity extends AppCompatActivity {
                 }
             }
         });
+
+
         bioEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -257,6 +301,8 @@ public class AddNewPetActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
 

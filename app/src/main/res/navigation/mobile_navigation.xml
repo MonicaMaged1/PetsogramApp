@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigationAdoption"
-        android:name="com.example.group.petsogramapp.ui.mating.MatingFragment"
+        android:name="com.example.group.petsogramapp.ui.adoption.AdoptionFragment"
         android:label="@string/adoption"
         tools:layout="@layout/fragment_adoption" />
 
     <fragment
         android:id="@+id/navigationMating"
-        android:name="com.example.group.petsogramapp.ui.adoption.AdoptionFragment"
+        android:name="com.example.group.petsogramapp.ui.mating.MatingFragment"
         android:label="@string/mating"
         tools:layout="@layout/fragment_mating" />
 
