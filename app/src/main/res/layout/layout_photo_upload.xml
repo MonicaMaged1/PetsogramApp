@@ -30,7 +30,7 @@
 
         <EditText
             android:id="@+id/txtCaption"
-            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal|center_vertical"
