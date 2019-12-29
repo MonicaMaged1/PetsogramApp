@@ -12,7 +12,6 @@ import com.example.group.petsogramapp.Backend.AccountManager;
 import com.example.group.petsogramapp.Backend.Updatable;
 
 import java.util.*;
-import java.awt.*;
 
 public class SignUp extends AppCompatActivity implements Updatable {
     ImageView LogoView;
