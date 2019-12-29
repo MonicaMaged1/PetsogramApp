@@ -43,4 +43,5 @@ public class NotificationsFragment extends Fragment {
     private void readNotifications(){
         //video 18
     }
+
 }

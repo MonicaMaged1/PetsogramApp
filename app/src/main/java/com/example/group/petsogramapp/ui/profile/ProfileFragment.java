@@ -32,6 +32,27 @@ import org.w3c.dom.Text;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
+import com.example.group.petsogramapp.AccountActivity;
+import com.example.group.petsogramapp.AddNewPetActivity;
+import com.example.group.petsogramapp.R;
+
+import com.example.group.petsogramapp.SettingsActivity;
+import com.example.group.petsogramapp.ui.notifications.NotificationsViewModel;
+
+import java.util.ArrayList;
+
 public class ProfileFragment extends Fragment {
 
     private ProfileViewModel profileViewModel;
@@ -115,7 +136,6 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-
 
     }
 }

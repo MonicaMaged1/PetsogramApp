@@ -263,11 +263,11 @@ public class AccountManager
             {
                 taskStatus = SUCCESS;
                 errorStatus = NONE;
-                Activity.updateUI();
             }
 
             else
                 handleError(task);
+            Activity.updateUIFromAuthentication();
         }
     }
 }

@@ -11,6 +11,7 @@ import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.storage.*;
 
 import java.io.ByteArrayOutputStream;
+import java.util.UUID;
 
 public class StorageManager
 {
@@ -96,15 +97,20 @@ public class StorageManager
         }
     }
 
-    public void uploadPhoto(Bitmap Photo, String collectionName, String documentID, boolean isProfilePhoto, String photoName)
+    public String generateID()
+    {
+        return UUID.randomUUID().toString();
+    }
+
+    public void uploadPhoto(Bitmap Photo, String collectionName, String documentID, boolean isProfilePhoto, String photoID)
     {
         StorageReference Storage = storageService.getReference();
         String Path = "";
         if(isProfilePhoto)
-            Path = collectionName+"/"+documentID+"/"+"ProfilePhoto/"+photoName;
+            Path = collectionName+"/"+documentID+"/"+"ProfilePhoto/"+photoID;
 
         else
-            Path = collectionName+"/"+documentID+"/"+"AllPhotos/"+photoName;
+            Path = collectionName+"/"+documentID+"/"+"AllPhotos/"+photoID;
 
         StorageReference storageLocation = Storage.child(Path);
         ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
@@ -153,11 +159,12 @@ public class StorageManager
             {
                 taskStatus = SUCCESS;
                 errorStatus = NONE;
-                Activity.updateUI();
             }
 
             else
                 handleError(task);
+
+            Activity.updateUIFromStorage();
         }
     }
 
@@ -172,11 +179,12 @@ public class StorageManager
                 retrievedPhoto = BitmapFactory.decodeByteArray(photoData, 0, photoData.length);
                 taskStatus = SUCCESS;
                 errorStatus = NONE;
-                Activity.updateUI();
             }
 
             else
                 handleError(task);
+
+            Activity.updateUIFromStorage();
         }
     }
 
@@ -189,11 +197,12 @@ public class StorageManager
             {
                 taskStatus = SUCCESS;
                 errorStatus = NONE;
-                Activity.updateUI();
             }
 
             else
                 handleError(task);
+          
+            Activity.updateUIFromStorage();
         }
     }
 }

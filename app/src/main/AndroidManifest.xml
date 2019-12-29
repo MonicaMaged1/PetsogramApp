@@ -19,14 +19,20 @@
         <activity android:name=".add.UploadPhoto" />
         <activity android:name=".ui.home.ViewCommentsActivity" />
         <activity android:name=".ui.home.ViewLikesActivity" />
+	<activity android:name=".Main2Activity"></activity>
+        <activity android:name=".SignUp" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".AddNewPetActivity" />
         <activity
             android:name=".Profile"
             android:label="@string/title_activity_profile">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
     </application>
