@@ -80,7 +80,7 @@ public class AccountManager
         errorStatus = NONE;
     }
 
-    public static AccountManager getInstance(updateable u)
+    public static AccountManager getInstance()
     {
         if(Instance == null)
             Instance = new AccountManager();

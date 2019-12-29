@@ -52,7 +52,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
             android:gravity="center"
-            android:textColor="@android:color/holo_red_dark" />
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/emailLabel"
