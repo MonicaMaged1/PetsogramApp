@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements Updatable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         accountManager= AccountManager.getInstance();
+        accountManager.setActivity(this);
         LogoView=(ImageView) findViewById(R.id.LogoView);
         welcomeText=(TextView) findViewById(R.id.welcomeText);
         emailLabel=(TextView) findViewById(R.id.emailLabel);
@@ -52,17 +53,19 @@ public class LoginActivity extends AppCompatActivity implements Updatable {
                 updatingLogIn=true;
                 emailEntry.setFocusable(false);
                 passwordEntry.setFocusable(false);
-                //AccountManager.getInstance(LoginActivity);
-//                    Intent intent_1 = new Intent(getApplicationContext(), Main2Activity.class);
-//                    startActivity(intent_1);
+                emailRetrieved= emailEntry.getText().toString();
+                passwordRetrieved= passwordEntry.getText().toString();
+                accountManager.signIn(emailRetrieved,passwordRetrieved);
+
             }
         });
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 updatingSignUp=true;
+                Intent intent_SignUp = new Intent(getApplicationContext(), SignUp.class);
+                    startActivity(intent_SignUp);
 
-                accountManager.setActivity(LoginActivity.this);
             }
         });
     }
@@ -70,11 +73,10 @@ public class LoginActivity extends AppCompatActivity implements Updatable {
 
     @Override
     public void updateUI() {
+        possibleErrorText.setText("please wait...logging you in");
         if(updatingLogIn)
         {
-            emailRetrieved= emailEntry.getText().toString();
-            passwordRetrieved= passwordEntry.getText().toString();
-            accountManager.signIn(emailRetrieved,passwordRetrieved);
+
             currentErrorStatus=accountManager.getErrorStatus();
             taskStatus=accountManager.getTaskStatus();
 
@@ -119,11 +121,6 @@ public class LoginActivity extends AppCompatActivity implements Updatable {
             }
             Intent intent_1 = new Intent(getApplicationContext(), Main2Activity.class);
             startActivity(intent_1);
-        }
-        else if(updatingSignUp)
-        {
-            Intent intent_2 = new Intent(getApplicationContext(), SignUp.class);
-            startActivity(intent_2);
         }
         }
     }
