@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "183916916554",
+    "firebase_url": "https://petsogram.firebaseio.com",
+    "project_id": "petsogram",
+    "storage_bucket": "petsogram.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183916916554:android:4143d344e7724321ff5bb3",
+        "android_client_info": {
+          "package_name": "com.example.group.petsogramapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183916916554-25cpa5p2vo3dmidktleuimdqbfs8gsgg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ_POxFVFxPjbdgRfM0jEiVQn2cBBM5tg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183916916554-25cpa5p2vo3dmidktleuimdqbfs8gsgg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
