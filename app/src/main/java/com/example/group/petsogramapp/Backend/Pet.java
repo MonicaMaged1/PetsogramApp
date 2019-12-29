@@ -1,54 +1,51 @@
 package com.example.group.petsogramapp.Backend;
 
-
-import android.graphics.Bitmap;
-
 import java.util.ArrayList;
 
 public class Pet extends Document
 {
+    private String profilePhotoID;
     private String userID;
-    private Bitmap profilePhoto;
-    private String Name;
-    private String Gender;
-    private String Biography;
-    private String Birthday;
-    private int Age;
-    private String Type;
-    private String Species;
-    private ArrayList<String> Photos;
+    private String name;
+    private String gender;
+    private String biography;
+    private String age;
+    private String type;
+    private String species;
     private int followerCount;
     private int followingCount;
     private int postCount;
+    private ArrayList<String> photos;
 
     public Pet(){}
 
-    public Pet(String userID, Bitmap profilePhoto, String Name, String Gender, String Biography, int Age, String Type, String Species)
+    public Pet(String profilePhotoID, String userID, String name, String gender, String biography, String age, String type, String species)
     {
+        this.profilePhotoID = profilePhotoID;
         this.userID = userID;
-        this.profilePhoto = profilePhoto;
-        this.Name = Name;
-        this.Gender = Gender;
-        this.Biography = Biography;
-        this.Age = Age;
-        this.Type = Type;
-        this.Species = Species;
-        Photos = new ArrayList<>();
+        this.name = name;
+        this.gender = gender;
+        this.biography = biography;
+        this.age = age;
+        this.type = type;
+        this.species = species;
         this.followerCount = 0;
         this.followingCount = 0;
         this.postCount = 0;
+        this.photos = new ArrayList<>();
     }
 
+    public void addPhoto(String photoID){photos.add(photoID);}
+    public String getProfilePhotoID(){return profilePhotoID;}
     public String getUserID() {return userID;}
-    public Bitmap getProfilePhoto() {return profilePhoto;}
-    public String getName() {return Name;}
-    public String getGender() {return Gender;}
-    public String getBiography() {return Biography;}
-    public String getBirthday() {return Birthday;}
-    public int getAge() {return Age;}
-    public String getType() {return Type;}
-    public String getSpecies() {return Species;}
-    public ArrayList<String> getPhotos() {return Photos;}
+    public String getName() {return name;}
+    public String getGender() {return gender;}
+    public String getBiography() {return biography;}
+    public String getAge() {return age;}
+    public String getType() {return type;}
+    public String getSpecies() {return species;}
     public int getFollowerCount() {return followerCount;}
+    public int getFollowingCount(){return followingCount;}
     public int getPostCount() {return postCount;}
+    public ArrayList<String> getPhotos() {return photos;}
 }

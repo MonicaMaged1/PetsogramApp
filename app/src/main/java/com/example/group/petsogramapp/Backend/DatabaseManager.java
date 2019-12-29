@@ -142,7 +142,7 @@ public class DatabaseManager
         findTask.addOnCompleteListener(new onFindTaskComplete(className));
     }
 
-    public void updateDocument(String collectionName, String documentID, String fieldName, String newValue)
+    public void updateDocument(String collectionName, String documentID, String fieldName, Object newValue)
     {
         CollectionReference collection = databaseService.collection(collectionName);
         DocumentReference document  = collection.document(documentID);
@@ -178,7 +178,6 @@ public class DatabaseManager
 
             else
                 handleError(task);
-
             Activity.updateUIFromDatabase();
         }
     }
@@ -197,8 +196,7 @@ public class DatabaseManager
 
             else
                 handleError(task);
-
-            Activity.updateUIFromDatabase();
+         Activity.updateUIFromDatabase();
         }
     }
 
@@ -220,12 +218,13 @@ public class DatabaseManager
                     case "User":
                         foundDocument = documentSnapshot.toObject(User.class);
                         break;
-
                     case "Pet":
                         foundDocument = documentSnapshot.toObject(Pet.class);
+                        break;
 
                     case "Post":
                         foundDocument = documentSnapshot.toObject(Post.class);
+                        break;
 
                     default:
                         break;
@@ -234,7 +233,6 @@ public class DatabaseManager
 
             else
                 handleError(task);
-
             Activity.updateUIFromDatabase();
         }
     }
@@ -251,7 +249,7 @@ public class DatabaseManager
 
             else
                 handleError(task);
-
+          
             Activity.updateUIFromDatabase();
         }
     }
@@ -303,8 +301,7 @@ public class DatabaseManager
 
             else
                 handleError(task);
-
-            Activity.updateUIFromDatabase();
+          Activity.updateUIFromDatabase();
         }
     }
 }

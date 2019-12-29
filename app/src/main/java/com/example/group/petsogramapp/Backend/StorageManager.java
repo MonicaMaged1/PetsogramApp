@@ -201,7 +201,7 @@ public class StorageManager
 
             else
                 handleError(task);
-
+          
             Activity.updateUIFromStorage();
         }
     }
