@@ -174,11 +174,11 @@ public class DatabaseManager
                 String documentID = documentReference.getId();
                 documentReference.update("id", documentID);
                 document.setID(documentID);
-                Activity.updateUI();
             }
 
             else
                 handleError(task);
+            Activity.updateUIFromDatabase();
         }
     }
 
@@ -192,11 +192,11 @@ public class DatabaseManager
             {
                 taskStatus = SUCCESS;
                 errorStatus = NONE;
-                Activity.updateUI();
             }
 
             else
                 handleError(task);
+         Activity.updateUIFromDatabase();
         }
     }
 
@@ -218,16 +218,20 @@ public class DatabaseManager
                     case "User":
                         foundDocument = documentSnapshot.toObject(User.class);
                         break;
+                    case "Pet":
+                        foundDocument = documentSnapshot.toObject(Pet.class);
+
+                    case "Post":
+                        foundDocument = documentSnapshot.toObject(Post.class);
 
                     default:
                         break;
                 }
-
-                Activity.updateUI();
             }
 
             else
                 handleError(task);
+            Activity.updateUIFromDatabase();
         }
     }
 
@@ -238,11 +242,13 @@ public class DatabaseManager
         {
             if(task.isSuccessful())
             {
-                Activity.updateUI();
+
             }
 
             else
                 handleError(task);
+          
+            Activity.updateUIFromDatabase();
         }
     }
 
@@ -270,15 +276,30 @@ public class DatabaseManager
                         }
                         break;
 
+                    case "Pet":
+                        for (QueryDocumentSnapshot Document : queryDocumentSnapshots)
+                        {
+                            Pet foundPet = Document.toObject(Pet.class);
+                            foundDocuments.add(foundPet);
+                        }
+                        break;
+
+                    case "Post":
+                        for (QueryDocumentSnapshot Document : queryDocumentSnapshots)
+                        {
+                            Post foundPost = Document.toObject(Post.class);
+                            foundDocuments.add(foundPost);
+                        }
+                        break;
+
                     default:
                         break;
                 }
-
-                Activity.updateUI();
             }
 
             else
                 handleError(task);
+          Activity.updateUIFromDatabase();
         }
     }
 }

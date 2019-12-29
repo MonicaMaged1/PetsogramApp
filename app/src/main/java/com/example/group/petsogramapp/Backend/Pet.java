@@ -18,6 +18,7 @@ public class Pet extends Document
     private String Species;
     private ArrayList<String> Photos;
     private int followerCount;
+    private int followingCount;
     private int postCount;
 
     public Pet(){}
@@ -34,6 +35,7 @@ public class Pet extends Document
         this.Species = Species;
         Photos = new ArrayList<>();
         this.followerCount = 0;
+        this.followingCount = 0;
         this.postCount = 0;
     }
 
