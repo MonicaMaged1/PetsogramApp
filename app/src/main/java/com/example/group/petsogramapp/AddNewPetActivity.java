@@ -13,7 +13,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -43,8 +45,10 @@ public class AddNewPetActivity extends AppCompatActivity {
     DatePickerDialog picker;
     ImageView newPetProfilePictureImageView;
     Spinner typeSpinner;
-    EditText birthDayEditText;
+    Spinner ageSpinner;
+    EditText ageEditText;
     Button uploadPictreButton;
+    Button addNewPetButton;
     EditText nameEditText;
     EditText speciesEditView;
     EditText birthDayEditText1;
@@ -64,6 +68,7 @@ public class AddNewPetActivity extends AppCompatActivity {
     int month = 0;
     int year=0;
     boolean birthDayIsChosen=false;
+    String date;
 
 
 
@@ -134,12 +139,13 @@ public class AddNewPetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_pet);
         typeSpinner = (Spinner) findViewById(R.id.typeSpinner);
-        birthDayEditText = findViewById(R.id.birthDayEditText);
+        ageSpinner = (Spinner) findViewById(R.id.ageSpinner);
+        ageEditText = findViewById(R.id.ageEditText);
         uploadPictreButton = findViewById(R.id.UploadPictreButton);
+        addNewPetButton = findViewById(R.id.AddNewPetButton);
         newPetProfilePictureImageView = findViewById(R.id.NewPetProfilePictureImageView);
         nameEditText=findViewById(R.id.nameEditText);
         speciesEditView=findViewById(R.id.speciesEditView);
-        birthDayEditText=findViewById(R.id.birthDayEditText);
         bioEditText=findViewById(R.id.BioEditText);
         intersetsEditText=findViewById(R.id.interestEditText);
         maleCheckBox=findViewById(R.id.MaleCheckBox);
@@ -199,58 +205,30 @@ public class AddNewPetActivity extends AppCompatActivity {
         });
 
 
-        birthDayEditText.setInputType(InputType.TYPE_NULL);
-        birthDayEditText.setOnClickListener(new View.OnClickListener() {
+        ageEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                final Calendar cldr = Calendar.getInstance();
-                 day = cldr.get(Calendar.DAY_OF_MONTH);
-                 month = cldr.get(Calendar.MONTH);
-                 year = cldr.get(Calendar.YEAR);
-                // date picker dialog
-                picker = new DatePickerDialog(AddNewPetActivity.this, new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                birthDayEditText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                                LocalDate l1 = LocalDate.of(year, month, day);
-                                LocalDate now1 = LocalDate.now();
-                                Period diff1 = Period.between(l1, now1);
-                                System.out.println("age:" + diff1.getYears() + "Years" + diff1.getMonths() + "Months" + diff1.getDays() + "Days");
-                            }
-                        }, year, month, day);
-                picker.show();
-                birthDay=birthDayEditText.getText().toString();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                Date d = null;
-                try {
-                    d = sdf.parse(birthDay);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-               // cldr.setTime(d);
-                if(birthDayIsChosen) {
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                // When focus is lost check that the text field has valid values.
+
+                if (!hasFocus) {
+                    // Validate youredittext
+
+                    birthDay=ageEditText.getText().toString();
 
                 }
-
             }
         });
-//        birthDayEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//
-//                // When focus is lost check that the text field has valid values.
-//
-//                if (!hasFocus) {
-//                    // Validate youredittext
-//                    String date=day + "/" + (month + 1) + "/" + year;
-//
-//
-//                    Calendar c = Calendar.getInstance();
-//
-//                }
-//            }
-//        });
 
+
+        ageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Object item = parent.getItemAtPosition(position);
+                date=birthDay+ageSpinner.getSelectedItem().toString();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
         intersetsEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -302,6 +280,38 @@ public class AddNewPetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showPictureDialog();
+
+            }
+        });
+        addNewPetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(TextUtils.isEmpty(nameEditText.getText()))
+                {
+                    Toast.makeText(AddNewPetActivity.this, "Please enter the name of your pett", Toast.LENGTH_SHORT).show();
+                }
+                else if(TextUtils.isEmpty(speciesEditView.getText()))
+                {
+                    Toast.makeText(AddNewPetActivity.this, "Please enter the species of your pet", Toast.LENGTH_SHORT).show();
+                }
+                else if(TextUtils.isEmpty(typeSpinner.getSelectedItem().toString()))
+                {
+                    Toast.makeText(AddNewPetActivity.this, "Please enter the type of your pet", Toast.LENGTH_SHORT).show();
+                }
+                else if(TextUtils.isEmpty(ageSpinner.getSelectedItem().toString()))
+                {
+                    Toast.makeText(AddNewPetActivity.this, "Please enter the age of your pet", Toast.LENGTH_SHORT).show();
+                }
+                else if(TextUtils.isEmpty(ageSpinner.getSelectedItem().toString()))
+                {
+                    Toast.makeText(AddNewPetActivity.this, "Please enter the gender of your pet", Toast.LENGTH_SHORT).show();
+                }
+                else if(maleCheckBox.isChecked() && femaleCheckBox.isChecked() )
+                {
+                    Toast.makeText(AddNewPetActivity.this, "Please enter the gender of your pet", Toast.LENGTH_SHORT).show();
+                }
+
+
 
             }
         });

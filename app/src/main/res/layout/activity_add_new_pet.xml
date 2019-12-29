@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <TextView
                 android:id="@+id/ageTextView"
@@ -105,12 +105,19 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/birthDayEditText"
+                android:id="@+id/ageEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Enter Date" />
+                android:inputType="number" />
+
+            <Spinner
+                android:id="@+id/ageSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/age_arrays" />
         </LinearLayout>
 
         <LinearLayout
@@ -236,7 +243,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/AddNewPetButton3"
+            android:id="@+id/AddNewPetButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
