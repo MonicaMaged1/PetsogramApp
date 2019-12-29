@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity implements Updatable {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loginButton.setClickable(false);
                 updatingLogIn=true;
                 emailEntry.setFocusable(false);
                 passwordEntry.setFocusable(false);
@@ -62,6 +63,7 @@ public class LoginActivity extends AppCompatActivity implements Updatable {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                signupButton.setClickable(false);
                 updatingSignUp=true;
                 Intent intent_SignUp = new Intent(getApplicationContext(), SignUp.class);
                     startActivity(intent_SignUp);
@@ -72,10 +74,13 @@ public class LoginActivity extends AppCompatActivity implements Updatable {
 
 
     @Override
-    public void updateUI() {
-        possibleErrorText.setText("please wait...logging you in");
-        if(updatingLogIn)
-        {
+    public void updateUIFromDatabase() {
+
+    }
+
+    @Override
+    public void updateUIFromAuthentication() {
+        //possibleErrorText.setText("please wait...logging you in");
 
             currentErrorStatus=accountManager.getErrorStatus();
             taskStatus=accountManager.getTaskStatus();
@@ -119,9 +124,17 @@ public class LoginActivity extends AppCompatActivity implements Updatable {
                 }
 
             }
+
+
             Intent intent_1 = new Intent(getApplicationContext(), Main2Activity.class);
+            finish();
             startActivity(intent_1);
+
         }
-        }
+
+    @Override
+    public void updateUIFromStorage() {
+
     }
+}
 

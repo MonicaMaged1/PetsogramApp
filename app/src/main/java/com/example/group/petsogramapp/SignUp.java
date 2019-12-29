@@ -3,13 +3,17 @@ package com.example.group.petsogramapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
 
 import com.example.group.petsogramapp.Backend.AccountManager;
+import com.example.group.petsogramapp.Backend.DatabaseManager;
 import com.example.group.petsogramapp.Backend.Updatable;
+import com.example.group.petsogramapp.Backend.User;
 
 import java.util.*;
 
@@ -26,7 +30,10 @@ public class SignUp extends AppCompatActivity implements Updatable {
     int currentErrorStatus;
     boolean updatingCreateAccount=false;
     AccountManager accountManager;
-
+    DatabaseManager databaseManager;
+    User newUser;
+    Intent intent_2;
+    Bitmap profilePhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +41,13 @@ public class SignUp extends AppCompatActivity implements Updatable {
         setContentView(R.layout.activity_sign_up);
 
         accountManager= AccountManager.getInstance();
+        accountManager.setActivity(this);
+
+        profilePhoto= BitmapFactory.decodeResource(getResources(), R.drawable.emptyprofile);
+
+        databaseManager= DatabaseManager.getInstance();
+        databaseManager.setActivity(this);
+
         LogoView = (ImageView) findViewById(R.id.LogoView);
         welcomeText = (TextView) findViewById(R.id.welcomeText);
         nameSignUp = (TextView) findViewById(R.id.nameSignUp);
@@ -58,27 +72,34 @@ public class SignUp extends AppCompatActivity implements Updatable {
                 {
                     errorTxt.setText("you must fill in all the fields");
                 }
-                nameEntrySignUp.setFocusable(false);
-                phoneEntrySignUp.setFocusable(false);
-                emailEntrySignUp.setFocusable(false);
-                addressEntrySignUp.setFocusable(false);
-                passwordEntrySignUp.setFocusable(false);
-                confirmPasswordEntrySignUp.setFocusable(false);
+                nameEntrySignUp.setEnabled(false);
+                phoneEntrySignUp.setEnabled(false);
+                emailEntrySignUp.setEnabled(false);
+                addressEntrySignUp.setEnabled(false);
+                passwordEntrySignUp.setEnabled(false);
+                confirmPasswordEntrySignUp.setEnabled(false);
 
                 //info needed to be added in the database
                 info.add(nameEntrySignUp.getText().toString());
                 info.add(phoneEntrySignUp.getText().toString());
                 info.add(addressEntrySignUp.getText().toString());
+                emailRetrieved=emailEntrySignUp.getText().toString();
+                passwordRetrieved_1=passwordEntrySignUp.getText().toString();
+                passwordRetrieved_2=confirmPasswordEntrySignUp.getText().toString();
+                accountManager.signUp(emailRetrieved,passwordRetrieved_1);
 
-                accountManager.setActivity(SignUp.this);
             }
         });
     }
-    public void updateUI()
+
+    @Override
+    public void updateUIFromDatabase()
     {
-        emailRetrieved=emailEntrySignUp.getText().toString();
-        passwordRetrieved_1=passwordEntrySignUp.getText().toString();
-        passwordRetrieved_2=confirmPasswordEntrySignUp.getText().toString();
+        intent_2.putExtra("userID",newUser.getID());
+    }
+
+    public void updateUIFromAuthentication()
+    {
         if(passwordRetrieved_1.equals(passwordRetrieved_2))
         {
             accountManager.signUp(emailRetrieved,passwordRetrieved_1);
@@ -119,14 +140,36 @@ public class SignUp extends AppCompatActivity implements Updatable {
                         passwordEntrySignUp.setFocusable(true);
                         confirmPasswordEntrySignUp.setFocusable(true);
                         break;
+                    default:
+                        newUser = new User(profilePhoto, info.get(0), emailRetrieved, info.get(1), info.get(2));
+                        databaseManager.addDocument("Users", newUser);
+                        intent_2 = new Intent(getApplicationContext(), Main2Activity.class);
+                        finish();
+                        startActivity(intent_2);
+
                 }
             }
-            Intent intent_2 = new Intent(getApplicationContext(), Main2Activity.class);
+
+            //m3ana soura default
+
+            newUser = new User(profilePhoto, info.get(0), emailRetrieved, info.get(1), info.get(2));
+            databaseManager.addDocument("Users", newUser);
+            intent_2 = new Intent(getApplicationContext(), Main2Activity.class);
+            finish();
             startActivity(intent_2);
         }
         //emailEntrySignUp.getText().clear();
         passwordEntrySignUp.getText().clear();
         confirmPasswordEntrySignUp.getText().clear();
+        passwordEntrySignUp.setEnabled(true);
+        confirmPasswordEntrySignUp.setEnabled(true);
+
         errorTxt.setText("password not matching");
+
+    }
+
+    @Override
+    public void updateUIFromStorage() {
+
     }
 }
