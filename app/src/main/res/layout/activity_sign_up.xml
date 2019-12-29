@@ -52,7 +52,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.24"
+        android:layout_weight="0.23"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -67,8 +67,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="13dp"
                 android:gravity="left"
                 android:text="Name"
                 android:textSize="15sp" />
@@ -78,8 +78,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="13dp"
                 android:gravity="left"
                 android:text="Email"
                 android:textSize="15sp" />
@@ -89,8 +89,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="13dp"
                 android:gravity="left"
                 android:text="Mobile"
                 android:textSize="15sp" />
@@ -100,8 +100,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="13dp"
                 android:gravity="left"
                 android:text="Address"
                 android:textSize="15sp" />
@@ -111,8 +111,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="13dp"
                 android:gravity="left"
                 android:text="Password"
                 android:textSize="15sp" />
@@ -122,8 +122,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="13dp"
                 android:gravity="left"
                 android:text="Confirm-Pass"
                 android:textSize="15sp" />
@@ -139,7 +139,6 @@
                 android:id="@+id/nameEntrySignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginRight="5dp"
 
                 android:ems="10"
@@ -150,9 +149,7 @@
                 android:id="@+id/emailEntrySignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
                 android:ems="10"
                 android:gravity="left"
                 android:inputType="textEmailAddress" />
@@ -161,7 +158,6 @@
                 android:id="@+id/phoneEntrySignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginRight="5dp"
 
                 android:ems="10"
@@ -172,7 +168,6 @@
                 android:id="@+id/addressEntrySignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginRight="5dp"
 
                 android:ems="10"
@@ -183,7 +178,6 @@
                 android:id="@+id/passwordEntrySignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginRight="5dp"
 
                 android:ems="10"
@@ -194,7 +188,6 @@
                 android:id="@+id/confirmPasswordEntrySignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginRight="5dp"
 
                 android:ems="10"
@@ -206,7 +199,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.43"
+        android:layout_weight="0.44"
         android:orientation="horizontal"
         android:weightSum="1">
 
