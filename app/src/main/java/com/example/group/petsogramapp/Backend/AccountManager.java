@@ -267,7 +267,6 @@ public class AccountManager
 
             else
                 handleError(task);
-
             Activity.updateUIFromAuthentication();
         }
     }

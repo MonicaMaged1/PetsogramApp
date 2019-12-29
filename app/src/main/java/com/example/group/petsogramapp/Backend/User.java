@@ -3,7 +3,6 @@ package com.example.group.petsogramapp.Backend;
 import android.graphics.Bitmap;
 
 import java.util.ArrayList;
-
 public class User extends Document
 {
     private Bitmap profilePhoto;

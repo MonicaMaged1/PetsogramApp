@@ -178,7 +178,6 @@ public class DatabaseManager
 
             else
                 handleError(task);
-
             Activity.updateUIFromDatabase();
         }
     }
@@ -197,8 +196,7 @@ public class DatabaseManager
 
             else
                 handleError(task);
-
-            Activity.updateUIFromDatabase();
+         Activity.updateUIFromDatabase();
         }
     }
 
@@ -220,7 +218,6 @@ public class DatabaseManager
                     case "User":
                         foundDocument = documentSnapshot.toObject(User.class);
                         break;
-
                     case "Pet":
                         foundDocument = documentSnapshot.toObject(Pet.class);
 
@@ -234,7 +231,6 @@ public class DatabaseManager
 
             else
                 handleError(task);
-
             Activity.updateUIFromDatabase();
         }
     }
@@ -251,7 +247,7 @@ public class DatabaseManager
 
             else
                 handleError(task);
-
+          
             Activity.updateUIFromDatabase();
         }
     }
@@ -303,8 +299,7 @@ public class DatabaseManager
 
             else
                 handleError(task);
-
-            Activity.updateUIFromDatabase();
+          Activity.updateUIFromDatabase();
         }
     }
 }
