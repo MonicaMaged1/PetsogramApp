@@ -1,7 +1,6 @@
 package com.example.group.petsogramapp.Backend;
 
 import java.util.ArrayList;
-
 public class User extends Document
 {
     private String fullName;
