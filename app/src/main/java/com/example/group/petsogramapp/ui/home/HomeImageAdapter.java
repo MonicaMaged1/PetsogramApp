@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.group.petsogramapp.R;
-import com.example.group.petsogramapp.ui.profile.OtherUserProfile;
+//import com.example.group.petsogramapp.ui.profile.OtherUserProfile;
 
 public class HomeImageAdapter extends BaseAdapter {
 
@@ -52,8 +52,8 @@ public class HomeImageAdapter extends BaseAdapter {
 
         petName.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent Intent = new Intent(Context, OtherUserProfile.class);
-                Context.startActivity(Intent);
+//                Intent Intent = new Intent(Context, OtherUserProfile.class);
+//                Context.startActivity(Intent);
             }
         });
 

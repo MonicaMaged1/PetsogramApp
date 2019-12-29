@@ -20,10 +20,7 @@
         <activity android:name=".ui.home.ViewCommentsActivity" />
         <activity android:name=".ui.home.ViewLikesActivity" />
 	<activity android:name=".Main2Activity"></activity>
-        <activity android:name=".SignUp" />
-        <activity android:name=".LoginActivity" />
         <activity android:name=".SettingsActivity"></activity>
-        <activity android:name=".AddNewPetActivity" />
         <activity
             android:name=".Profile"
             android:label="@string/title_activity_profile">

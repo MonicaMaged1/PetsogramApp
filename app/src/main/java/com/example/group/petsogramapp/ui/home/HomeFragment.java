@@ -1,12 +1,9 @@
 package com.example.group.petsogramapp.ui.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
@@ -17,11 +14,9 @@ import androidx.lifecycle.ViewModelProviders;
 
 
 import com.example.group.petsogramapp.R;
-import com.example.group.petsogramapp.ui.profile.Post;
-import com.example.group.petsogramapp.ui.profile.PostDetails;
 import com.example.group.petsogramapp.ui.profile.PostImageAdapter;
+import com.example.group.petsogramapp.Backend.Post;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {

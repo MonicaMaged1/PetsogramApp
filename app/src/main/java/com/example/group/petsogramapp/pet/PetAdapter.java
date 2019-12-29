@@ -15,6 +15,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.group.petsogramapp.Backend.Pet;
 
 public class PetAdapter extends RecyclerView.Adapter<PetAdapter.ViewHolder> {
     private Context mContext;

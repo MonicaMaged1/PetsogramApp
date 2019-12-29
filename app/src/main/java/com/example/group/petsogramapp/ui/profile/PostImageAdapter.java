@@ -1,6 +1,7 @@
 package com.example.group.petsogramapp.ui.profile;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.group.petsogramapp.Backend.StorageManager;
 import com.example.group.petsogramapp.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //public class PostImageAdapter extends RecyclerView.Adapter<PostImageAdapter.ViewHolder>{
@@ -43,17 +46,17 @@ import java.util.List;
 //    }
 public class PostImageAdapter extends BaseAdapter {
     Context Context;
-    int myPosts[];
+    ArrayList<Bitmap> myPosts;
 
     LayoutInflater Inflater;
-    public PostImageAdapter(Context applicationContext, int[] myPosts) {
+    public PostImageAdapter(Context applicationContext, ArrayList<Bitmap> myPosts) {
         this.Context = applicationContext;
         this.myPosts = myPosts;
         Inflater = (LayoutInflater.from(applicationContext));
     }
     @Override
     public int getCount() {
-        return myPosts.length;
+        return 0;
     }
     @Override
     public Object getItem(int i) {
@@ -67,7 +70,7 @@ public class PostImageAdapter extends BaseAdapter {
     public View getView(int i, View profileImagesView, ViewGroup viewGroup) {
         profileImagesView = Inflater.inflate(R.layout.layout_gridview_profile, null);
         ImageView myPost = (ImageView) profileImagesView.findViewById(R.id.myPostId);
-        myPost.setImageResource(myPosts[i]);
+        myPost.setImageBitmap(myPosts.get(i));
         return profileImagesView;
     }
 

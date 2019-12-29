@@ -31,7 +31,6 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.group.petsogramapp.R;
 import com.example.group.petsogramapp.ui.home.HomeFragment;
 import com.example.group.petsogramapp.ui.profile.ProfileFragment;
-import com.example.group.petsogramapp.ui.profile.ProfileViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.ByteArrayOutputStream;

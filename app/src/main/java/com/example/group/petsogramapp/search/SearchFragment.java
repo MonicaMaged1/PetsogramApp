@@ -16,12 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.group.petsogramapp.R;
-import com.example.group.petsogramapp.pet.Pet;
 import com.example.group.petsogramapp.pet.PetAdapter;
+import com.example.group.petsogramapp.Backend.Pet;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class SearchFragment extends Fragment {
 
