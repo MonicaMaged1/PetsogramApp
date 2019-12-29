@@ -12,36 +12,48 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.37"
-        android:orientation="vertical">
+        android:layout_weight="0.33"
+        android:orientation="vertical"
+        android:weightSum="100">
 
         <ImageView
             android:id="@+id/LogoView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginTop="20dp"
+            android:layout_weight="99"
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/logo" />
+
         <TextView
             android:id="@+id/welcomeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.2"
             android:gravity="center"
             android:text="Welcome to Petsogram"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="25sp"
-            android:layout_marginTop="10dp"
             android:textStyle="bold|italic"
             app:fontFamily="serif" />
+
+        <TextView
+            android:id="@+id/errorTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.19"
         android:layout_marginTop="20dp"
+        android:layout_weight="0.21"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -164,10 +176,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="10dp"
-                android:gravity="left"
                 android:ems="10"
-                android:inputType="textPostalAddress"
-                 />
+                android:gravity="left"
+                android:inputType="textPostalAddress" />
 
             <EditText
                 android:id="@+id/passwordEntrySignUp"
@@ -196,7 +207,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.45"
+        android:layout_weight="0.47"
         android:orientation="horizontal"
         android:weightSum="1">
 

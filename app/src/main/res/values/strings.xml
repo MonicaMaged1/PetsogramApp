@@ -9,4 +9,21 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_account">Account</string>
+    <string name="adoption">Adoption</string>
+    <string name="mating">Mating</string>
+    <string name="notifications">Notifications</string>
+    <string name="profile">Profile</string>
+    <string-array name="animals_arrays">
+        <item>Cats</item>
+        <item>Dogs</item>
+        <item>Birds</item>
+        <item>Bunny</item>
+        <item>Fish</item>
+        <item>Turtle</item>
+        <item>Hamster</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -3,13 +3,19 @@ package com.example.group.petsogramapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.*;
+import java.util.*;
+import java.awt.*;
 
-public class SignUp extends AppCompatActivity implements updateable {
+public abstract class SignUp extends AppCompatActivity implements updateable {
     ImageView LogoView;
-    TextView welcomeText, nameSignUp, emailSignUp, mobileSignUp, addressSignUp, passwordSignUp, confirmPasswordSignUp;
-    EditText nameEntrySignUp, emailEntrySignUp, phoneEntrySignUp, passwordEntrySignUp, confirmPasswordEntrySignUp;
+    TextView welcomeText, nameSignUp, emailSignUp, mobileSignUp, addressSignUp, passwordSignUp, confirmPasswordSignUp,errorTxt;
+    EditText nameEntrySignUp, emailEntrySignUp, phoneEntrySignUp,addressEntrySignUp, passwordEntrySignUp, confirmPasswordEntrySignUp;
     Button createAccountButton;
+    ArrayList<String> info= new ArrayList<>();
+    boolean updatingCreateAccount=false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +33,27 @@ public class SignUp extends AppCompatActivity implements updateable {
         nameEntrySignUp = (EditText) findViewById(R.id.nameEntrySignUp);
         emailEntrySignUp = (EditText) findViewById(R.id.emailEntrySignUp);
         phoneEntrySignUp = (EditText) findViewById(R.id.phoneEntrySignUp);
-        nameEntrySignUp = (EditText) findViewById(R.id.nameEntrySignUp);
-        nameEntrySignUp = (EditText) findViewById(R.id.nameEntrySignUp);
-        nameEntrySignUp = (EditText) findViewById(R.id.nameEntrySignUp);
+        addressEntrySignUp = (EditText) findViewById(R.id.addressEntrySignUp);
+        passwordEntrySignUp = (EditText) findViewById(R.id.passwordEntrySignUp);
+        confirmPasswordEntrySignUp = (EditText) findViewById(R.id.confirmPasswordEntrySignUp);
+        createAccountButton=(Button) findViewById(R.id.createAccountButton);
+        errorTxt=(TextView) findViewById(R.id.errorTxt);
+
+        createAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(nameEntrySignUp.getText().toString().isEmpty() || emailEntrySignUp.getText().toString().isEmpty() || phoneEntrySignUp.getText().toString().isEmpty() ||addressEntrySignUp.getText().toString().isEmpty() ||confirmPasswordEntrySignUp.getText().toString().isEmpty() ||passwordEntrySignUp.getText().toString().isEmpty())
+                {
+                    errorTxt.setText("you must fill in all the fields");
+                }
+
+                updatingCreateAccount=true;
+            }
+        });
     }
+    public void updateUI()
+    {
+
+
 }
+
