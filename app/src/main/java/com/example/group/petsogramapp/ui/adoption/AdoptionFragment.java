@@ -21,6 +21,7 @@ public class AdoptionFragment extends Fragment {
     private AdoptionViewModel adoptionViewModel;
     private ListView adoptionListView;
     private Button viewProfileAdoptionButton;
+
     int[] imageId = {
             R.drawable.cat_2,
             R.drawable.cat_1,

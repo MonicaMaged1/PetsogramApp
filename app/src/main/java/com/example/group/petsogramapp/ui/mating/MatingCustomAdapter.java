@@ -1,7 +1,6 @@
-package com.example.group.petsogramapp.ui.adoption;
+package com.example.group.petsogramapp.ui.mating;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.group.petsogramapp.R;
-import com.example.group.petsogramapp.SignUp;
 
-public class AdoptionCustomAdapter extends BaseAdapter {
+public class MatingCustomAdapter extends BaseAdapter {
 
-    Context Context;
+    android.content.Context Context;
     int homePosts[];
     LayoutInflater Inflater;
     ImageView likeButton;
@@ -23,7 +21,7 @@ public class AdoptionCustomAdapter extends BaseAdapter {
     TextView  Comments;
     Button viewProfileAdoptionButton;
 
-    public AdoptionCustomAdapter(android.content.Context applicationContext, int[] homePosts) {
+    public MatingCustomAdapter(android.content.Context applicationContext, int[] homePosts) {
         this.Context = applicationContext;
         this.homePosts = homePosts;
         Inflater = (LayoutInflater.from(applicationContext));
@@ -42,9 +40,9 @@ public class AdoptionCustomAdapter extends BaseAdapter {
     }
     @Override
     public View getView(int i, View myHomeView, ViewGroup viewGroup) {
-        myHomeView = Inflater.inflate(R.layout.adoption_rows, null);
-        ImageView postImage = (ImageView) myHomeView.findViewById(R.id.postAdoptionImage);
-        viewProfileAdoptionButton= (Button) myHomeView.findViewById(R.id.viewProfileAdoptionButton);
+        myHomeView = Inflater.inflate(R.layout.mating_rows, null);
+        ImageView postImage = (ImageView) myHomeView.findViewById(R.id.postMatingImage);
+        viewProfileAdoptionButton= (Button) myHomeView.findViewById(R.id.viewProfileMatingButton);
         postImage.setImageResource(homePosts[i]);
 
 
@@ -53,3 +51,4 @@ public class AdoptionCustomAdapter extends BaseAdapter {
         return myHomeView;
     }
 }
+

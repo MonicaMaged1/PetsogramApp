@@ -15,14 +15,14 @@
         android:paddingTop="5dp">
 
         <ImageView
-            android:id="@+id/adoptionProfilePicture"
+            android:id="@+id/matingProfilePicture"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="10dp"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/adoptionPetName"
+            android:id="@+id/matingPetName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name"
@@ -39,7 +39,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/postAdoptionImage"
+            android:id="@+id/postMatingImage"
             android:layout_width="fill_parent"
             android:layout_height="350dp"
             android:layout_gravity="center"
@@ -57,7 +57,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/postForAdoptionTextView"
+            android:id="@+id/postForMatingTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Post"
@@ -65,10 +65,11 @@
             android:textSize="20dp"/>
 
         <Button
-            android:id="@+id/viewProfileAdoptionButton"
+            android:id="@+id/viewProfileMatingButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="View Profile" />
+
     </LinearLayout>
 
 </LinearLayout>
