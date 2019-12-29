@@ -63,6 +63,7 @@ public class AddNewPetActivity extends AppCompatActivity {
     int day = 0;
     int month = 0;
     int year=0;
+    boolean birthDayIsChosen=false;
 
 
 
@@ -211,11 +212,14 @@ public class AddNewPetActivity extends AppCompatActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 birthDayEditText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                LocalDate l1 = LocalDate.of(year, month, day);
+                                LocalDate now1 = LocalDate.now();
+                                Period diff1 = Period.between(l1, now1);
+                                System.out.println("age:" + diff1.getYears() + "Years" + diff1.getMonths() + "Months" + diff1.getDays() + "Days");
                             }
                         }, year, month, day);
                 picker.show();
                 birthDay=birthDayEditText.getText().toString();
-                String date=day + "/" + (month + 1) + "/" + year;
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Date d = null;
                 try {
@@ -223,29 +227,29 @@ public class AddNewPetActivity extends AppCompatActivity {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                picker.show();
-                birthDay=birthDayEditText.getText().toString();
-                Calendar c = Calendar.getInstance();
-                c.setTime(d);
-                LocalDate l1 = LocalDate.of(year, month, day);
-                LocalDate now1 = LocalDate.now();
-                Period diff1 = Period.between(l1, now1);
-                System.out.println("age:" + diff1.getYears() + "Years"+diff1.getMonths()+"Months"+diff1.getDays()+"Days");
-
-            }
-        });
-        birthDayEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-
-                // When focus is lost check that the text field has valid values.
-
-                if (!hasFocus) {
-                    // Validate youredittext
+               // cldr.setTime(d);
+                if(birthDayIsChosen) {
 
                 }
+
             }
         });
+//        birthDayEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//
+//                // When focus is lost check that the text field has valid values.
+//
+//                if (!hasFocus) {
+//                    // Validate youredittext
+//                    String date=day + "/" + (month + 1) + "/" + year;
+//
+//
+//                    Calendar c = Calendar.getInstance();
+//
+//                }
+//            }
+//        });
 
         intersetsEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
