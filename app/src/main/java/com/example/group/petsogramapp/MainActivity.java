@@ -41,18 +41,20 @@ public class MainActivity extends AppCompatActivity implements Updatable
         storageManager = StorageManager.getInstance();
         storageManager.setActivity(this);
 
+//        databaseManager.findDocument("Pets", "3dINNAHZLpUTcwW85KPq", "Pet");
         flag = false;
         flag2 = false;
         photo =  ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-        u = new User("test", "test", "test", "test");
+        u = new User("","test", "test", "test", "test");
         databaseManager.addDocument("Users", u);
     }
 
     @Override
     public void updateUIFromDatabase() {
+//        Pet pet = (Pet) databaseManager.getFoundDocument();
         if(!flag) {
             flag = true;
-            p = new Pet(u.getID(), "roza", "female", "asdsa", "3 years", "adasd", "adas");
+            p = new Pet(u.getID(),"","roza", "female", "asdsa", "3 years", "adasd", "adas");
             databaseManager.addDocument("Pets", p);
         }
 

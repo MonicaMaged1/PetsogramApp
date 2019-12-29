@@ -5,27 +5,27 @@ import android.graphics.Bitmap;
 public class Post extends Document
 {
     private String petID;
-    private Bitmap postPhoto;
-    private String Caption;
+    private String postPhotoID;
+    private String caption;
     private String publisherName;
     private int likeCount;
     private int commentCount;
 
     public Post(){}
-
-    public Post(String petID, Bitmap postPhoto, String Caption, String publisherName)
+    
+    public Post(String petID, String postPhotoID, String caption, String publisherName)
     {
         this.petID = petID;
-        this.postPhoto = postPhoto;
-        this.Caption = Caption;
+        this.postPhotoID = postPhotoID;
+        this.caption = caption;
         this.publisherName = publisherName;
         this.likeCount = 0;
         this.commentCount = 0;
     }
 
     public String getPetID() {return petID;}
-    public Bitmap getPostPhoto() {return postPhoto;}
-    public String getCaption() {return Caption;}
+    public String getPostPhotoID() {return postPhotoID;}
+    public String getCaption() {return caption;}
     public String getPublisherName() {return publisherName;}
     public int getLikeCount() {return likeCount;}
     public int getCommentCount() {return commentCount;}
