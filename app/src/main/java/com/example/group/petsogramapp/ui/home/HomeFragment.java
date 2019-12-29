@@ -14,8 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.example.group.petsogramapp.R;
 import com.example.group.petsogramapp.ui.profile.Post;
@@ -29,7 +28,6 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
-    private RecyclerView recyclerView;
     private PostImageAdapter postImageAdapter;
     private List<Post> postLists;
 

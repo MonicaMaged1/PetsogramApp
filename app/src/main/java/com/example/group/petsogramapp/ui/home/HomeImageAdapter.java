@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.group.petsogramapp.R;
+import com.example.group.petsogramapp.ui.profile.OtherUserProfile;
 
 public class HomeImageAdapter extends BaseAdapter {
 
@@ -19,6 +20,7 @@ public class HomeImageAdapter extends BaseAdapter {
     ImageView likeButton;
     TextView Likes;
     TextView  Comments;
+    TextView petName;
 
     public HomeImageAdapter(Context applicationContext, int[] homePosts) {
         this.Context = applicationContext;
@@ -46,6 +48,15 @@ public class HomeImageAdapter extends BaseAdapter {
         likeButton = (ImageView) myHomeView.findViewById(R.id.likeButton);
         Likes = (TextView) myHomeView.findViewById(R.id.Likes);
         Comments = (TextView) myHomeView.findViewById(R.id.Comments);
+        petName =(TextView) myHomeView.findViewById(R.id.petName);
+
+        petName.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent Intent = new Intent(Context, OtherUserProfile.class);
+                Context.startActivity(Intent);
+            }
+        });
+
         likeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (likeButton.getDrawable().getConstantState() == Context.getResources().getDrawable(R.drawable.liked).getConstantState())
