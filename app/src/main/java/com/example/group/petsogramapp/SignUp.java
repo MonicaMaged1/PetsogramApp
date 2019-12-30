@@ -34,6 +34,7 @@ public class SignUp extends AppCompatActivity implements Updatable {
     User newUser;
     Intent intent_2;
     Bitmap profilePhoto;
+    int emptyprofile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,8 @@ public class SignUp extends AppCompatActivity implements Updatable {
 
         databaseManager= DatabaseManager.getInstance();
         databaseManager.setActivity(this);
+
+        emptyprofile=R.drawable.emptyprofile;
 
         LogoView = (ImageView) findViewById(R.id.LogoView);
         welcomeText = (TextView) findViewById(R.id.welcomeText);
@@ -141,7 +144,7 @@ public class SignUp extends AppCompatActivity implements Updatable {
                         confirmPasswordEntrySignUp.setFocusable(true);
                         break;
                     default:
-                        newUser = new User(info.get(0), emailRetrieved, info.get(1), info.get(2));
+                        newUser = new User(newUser.getProfilePhotoID(),info.get(0), emailRetrieved, info.get(1), info.get(2));
                         databaseManager.addDocument("Users", newUser);
                         intent_2 = new Intent(getApplicationContext(), Main2Activity.class);
                         finish();
@@ -152,7 +155,7 @@ public class SignUp extends AppCompatActivity implements Updatable {
 
             //m3ana soura default
 
-            newUser = new User(info.get(0), emailRetrieved, info.get(1), info.get(2));
+            newUser = new User(newUser.getProfilePhotoID(),info.get(0), emailRetrieved, info.get(1), info.get(2));
             databaseManager.addDocument("Users", newUser);
             intent_2 = new Intent(getApplicationContext(), Main2Activity.class);
             finish();

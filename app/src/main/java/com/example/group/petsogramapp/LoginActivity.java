@@ -119,6 +119,7 @@ public class LoginActivity extends AppCompatActivity implements Updatable {
                         break;
                     default:
                         Intent intent_1 = new Intent(getApplicationContext(), Main2Activity.class);
+                        intent_1.put
                         finish();
                         startActivity(intent_1);
 
